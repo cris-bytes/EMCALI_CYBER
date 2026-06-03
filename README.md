@@ -71,3 +71,12 @@ La aplicación acepta y normaliza automáticamente:
 - JSON bajo el esquema unificado de EMCALI Cyber 2.0.
 - CSV y Excel con datasets enriquecidos (NVD + CISA KEV + EPSS).
 - Archivos estándar como `cve_corpus.csv` o `cve_cisa_epss_enriched_dataset.csv`.
+
+---
+
+## 👥 Equipo y Autores
+
+Este proyecto fue desarrollado y estructurado por el siguiente equipo:
+- **Rubén Darío Sabogal**
+- **Edwin Pérez Lozano**
+- **Cristian Camilo Quebrada Bautista**
