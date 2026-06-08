@@ -1,0 +1,15 @@
+EMCALI Cyber 2.0 Híbrido - V7 Anthropic Claude
+
+Cambios realizados:
+1. Se agregó backend LLM principal: anthropic.
+2. Se agregó selector de modelos Claude:
+   - Claude Opus -> claude-opus-4-8
+   - Claude Sonnet -> claude-sonnet-4-6
+   - Claude Haiku -> claude-haiku-4-5
+3. Se agregó campo Anthropic API Key en Configuración.
+4. Se agregó soporte de fallback Anthropic en core/llm_runtime.py.
+5. Se mantuvo Ollama local como backend por defecto con phi3:mini.
+
+Uso:
+- Para modelos locales con Claude Code: usar ollama launch claude --model phi3:mini o llama3.1:8b.
+- Para Claude Opus/Sonnet/Haiku reales dentro de Streamlit: configurar ANTHROPIC_API_KEY o pegar la clave en la pantalla Configuración.

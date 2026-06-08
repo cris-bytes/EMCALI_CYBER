@@ -1,0 +1,12 @@
+EMCALI Cyber 2.0 Híbrido - V9 Logo EMCALI
+
+Cambios realizados:
+1. Se agregó el archivo assets/logo_emcali.jfif.
+2. Se integró el logo oficial de EMCALI en el encabezado principal del tablero.
+3. Se integró el logo en la barra lateral de navegación.
+4. Se conserva el módulo Métricas LLM Enterprise de la versión V8.
+5. Se conserva la integración Anthropic/Claude de la versión V7.
+
+Ejecución:
+- Descomprimir el ZIP.
+- Ejecutar run_app.bat o streamlit run app.py.

@@ -1,0 +1,22 @@
+# EMCALI Cyber 2.0 Híbrido V12 - Aceleración IA / GPU
+
+Cambios incorporados:
+
+1. Nuevo módulo: Aceleración IA / GPU.
+2. Detección automática de GPU NVIDIA mediante nvidia-smi.
+3. Lectura de VRAM, driver, temperatura y uso de GPU.
+4. Validación de uso real de GPU por Ollama mediante `ollama ps` y procesos en `nvidia-smi`.
+5. Recomendación automática de modelos según hardware.
+6. Instalación desde interfaz de modelos livianos para pruebas:
+   - smollm2:135m
+   - smollm2:360m
+   - qwen2.5:0.5b
+   - qwen2.5:1.5b
+   - tinyllama
+   - gemma2:2b
+   - phi3:mini
+7. Benchmark local de latencia, tokens y tokens/segundo.
+8. Configuración `ollama_num_gpu` para modo automático, CPU o intento de offload GPU.
+9. Monitoreo GPU habilitable desde configuración.
+
+Nota técnica: EMCALI Cyber 2.0 no ejecuta el modelo directamente en GPU; la aplicación invoca Ollama. Ollama decide si usa CPU o GPU según hardware, driver, CUDA, VRAM y compatibilidad del modelo.

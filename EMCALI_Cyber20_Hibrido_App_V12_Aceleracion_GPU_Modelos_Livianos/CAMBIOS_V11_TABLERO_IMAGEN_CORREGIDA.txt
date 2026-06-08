@@ -1,0 +1,5 @@
+CAMBIOS V11 - Corrección pantalla actual
+
+- Se reemplazó assets/pantalla_actual.png por la captura correcta del tablero con el logo EMCALI integrado.
+- Se eliminó la imagen anterior que contenía la flecha roja de referencia.
+- Se mantiene el tablero dinámico V10: diagramas de despliegue/modelo híbrido y gráficos actualizables por consulta.

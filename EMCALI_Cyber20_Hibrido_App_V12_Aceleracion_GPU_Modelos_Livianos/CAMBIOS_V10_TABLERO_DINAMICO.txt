@@ -1,0 +1,17 @@
+EMCALI Cyber 2.0 Híbrido - V10 Tablero Dinámico y Diagramas Actualizados
+
+Cambios realizados:
+1. Pestaña "Pantalla actual": reemplazada por captura actualizada del nuevo tablero con logo EMCALI.
+2. Pestaña "Despliegue": reemplazada por diagrama correcto del despliegue actual de la aplicación:
+   - Estación analista Windows / navegador localhost:8501.
+   - Streamlit UI.
+   - Backend Python EMCALI Cyber 2.0.
+   - Normalizador + RAG local.
+   - Ollama local con modelos phi3, llama3.1 y Foundation-Sec-8B.
+   - Fallback cloud controlado hacia Anthropic Claude, Gemini u OpenAI.
+   - Enriquecimiento NVD / CISA KEV / EPSS.
+3. Pestaña "Modelo híbrido": reemplazada por diagrama actualizado del modelo LLM/RAG Enterprise.
+4. Gráfico "Vulnerabilidades por severidad": ahora se recalcula dinámicamente desde el dataset activo.
+5. Gráfico "Activos / servicios impactados": ahora se recalcula dinámicamente desde business_service, asset o ip según columnas disponibles.
+6. Se normalizaron severidades en español/inglés: Crítica/Critical, Alta/High, Media/Medium, Baja/Low.
+7. Se agregaron mensajes de trazabilidad para confirmar que las gráficas usan la última consulta/ingesta activa.
