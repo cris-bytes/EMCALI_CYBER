@@ -1,0 +1,8 @@
+V13.2 EXPERIMENTAL
+- V12 aprobada permanece sin cambios.
+- Gestor Cyber ahora usa catálogo extensible.
+- Modelos integrados: CyberSec-Assistant-3B Q5_K_M, Foundation-Sec-8B Q4_K_M, Lily-Cybersecurity-7B Q4_K_M.
+- Formulario para registrar cualquier futuro GGUF: URL, archivo, cuantización, tamaño, VRAM orientativa, nombre Ollama y SHA-256.
+- Los modelos personalizados se guardan en models/custom_cyber_models.json.
+- Eliminar una entrada personalizada NO borra pesos ni modelos Ollama.
+- Descarga reanudable, SHA-256 opcional, Ollama create, healthcheck, selección y benchmark.

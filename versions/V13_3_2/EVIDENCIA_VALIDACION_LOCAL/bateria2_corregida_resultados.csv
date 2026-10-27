@@ -1,0 +1,40 @@
+﻿test_id,category,status,detail,evidence,utc
+IMPORT_REAL,integration,PASS,core.normalizer + core.risk_engine_v1332.evaluate_dataframe importados (mismo motor que usa core.analysis.risk_matrix),,2026-10-24T23:55:39.917424+00:00
+RISK_ZERO,risk_engine,PASS,actual=0.0; expected=0.0,,2026-10-24T23:55:39.917501+00:00
+RISK_MAX,risk_engine,PASS,actual=100.0; expected=100.0,,2026-10-24T23:55:39.917523+00:00
+RISK_BASE,risk_engine,PASS,actual=76.25; expected=76.25,,2026-10-24T23:55:39.917540+00:00
+MISSING_cvss,missing,PASS,"score=None,missing=cvss,interval=56.25:81.25",,2026-10-24T23:55:39.917564+00:00
+MISSING_epss,missing,PASS,"score=None,missing=epss,interval=66.25:86.25",,2026-10-24T23:55:39.917584+00:00
+MISSING_cisa_kev,missing,PASS,"score=None,missing=kev,interval=56.25:76.25",,2026-10-24T23:55:39.917597+00:00
+MISSING_asset_criticality,missing,PASS,"score=None,missing=asset_criticality,interval=65.0:80.0",,2026-10-24T23:55:39.917609+00:00
+MISSING_exposure,missing,PASS,"score=None,missing=exposure,interval=66.25:76.25",,2026-10-24T23:55:39.917621+00:00
+MISSING_operational_impact,missing,PASS,"score=None,missing=operational_impact,interval=71.25:81.25",,2026-10-24T23:55:39.917632+00:00
+SENS_cvss,sensitivity,PASS,delta=-17.5; expected=-17.5,,2026-10-24T23:55:39.917656+00:00
+SENS_epss,sensitivity,PASS,delta=-8.0; expected=-8.0,,2026-10-24T23:55:39.917678+00:00
+SENS_cisa_kev,sensitivity,PASS,delta=-20.0; expected=-20.0,,2026-10-24T23:55:39.917698+00:00
+SENS_asset_criticality,sensitivity,PASS,delta=3.75; expected=3.75,,2026-10-24T23:55:39.917721+00:00
+SENS_exposure,sensitivity,PASS,delta=-7.5; expected=-7.5,,2026-10-24T23:55:39.917741+00:00
+SENS_operational_impact,sensitivity,PASS,delta=5.0; expected=5.0,,2026-10-24T23:55:39.917765+00:00
+INVALID_cvss,invalid,PASS,score=None,,2026-10-24T23:55:39.917777+00:00
+INVALID_epss,invalid,PASS,score=None,,2026-10-24T23:55:39.917787+00:00
+INVALID_cisa_kev,invalid,PASS,score=None,,2026-10-24T23:55:39.917797+00:00
+INVALID_asset_criticality,invalid,PASS,score=None,,2026-10-24T23:55:39.917813+00:00
+INVALID_exposure,invalid,PASS,score=None,,2026-10-24T23:55:39.917824+00:00
+INVALID_operational_impact,invalid,PASS,score=None,,2026-10-24T23:55:39.917834+00:00
+DATA_01_Smoke_KEV_50,dataset_real,PASS,rows=50; scored=0; pending=50; unknown_kev=0; ms=147.23; sha256=7bae41110d882e6b861c6e42050406b9da2b0e0d01f85817de8cd001f37b3eb0,01_Smoke_KEV_50.xlsx,2026-10-24T23:55:40.065613+00:00
+DATA_02_Risk_Baseline_50,dataset_real,PASS,rows=50; scored=0; pending=50; unknown_kev=0; ms=30.55; sha256=3b91e8e247ae4d14c942fbc1088dbaf887395c5d7cf769f2c0ee6c1a3f68235f,02_Risk_Baseline_50.xlsx,2026-10-24T23:55:40.096720+00:00
+DATA_03_RAG_Local_50,dataset_real,PASS,rows=50; scored=0; pending=50; unknown_kev=0; ms=30.76; sha256=488733b59df0fcf4b8dfb0b8f831e4e1813aa143600001a5ddf4d9bb0a46020c,03_RAG_Local_50.xlsx,2026-10-24T23:55:40.128007+00:00
+DATA_04_RAG_Cloud_Controlled_50,dataset_real,PASS,rows=50; scored=0; pending=50; unknown_kev=0; ms=30.48; sha256=2d3330f50a0a167fa41d248a86710bee36dae055bd667aba0f6ae1605588ca70,04_RAG_Cloud_Controlled_50.xlsx,2026-10-24T23:55:40.159055+00:00
+DATA_05_Load_100_100,dataset_real,PASS,rows=100; scored=0; pending=100; unknown_kev=0; ms=51.42; sha256=fd2d196a2dbf7a835ba8df1672dff13bdc01a94999b88b2f3ed6b8f4e30d9e9c,05_Load_100_100.xlsx,2026-10-24T23:55:40.211080+00:00
+DATA_06_Load_250_250,dataset_real,PASS,rows=250; scored=0; pending=250; unknown_kev=0; ms=112.54; sha256=1aa80cfd3c66c50968586824c9360ffc0418cd3ca2b0f37ed421c6763c0f6865,06_Load_250_250.xlsx,2026-10-24T23:55:40.324428+00:00
+DATA_07_Load_500_500,dataset_real,PASS,rows=500; scored=0; pending=500; unknown_kev=0; ms=216.35; sha256=2fe1f6889fb0b6fb6fbebfe2d78447d2eab8c0a1e77669ca7208c387e8186287,07_Load_500_500.xlsx,2026-10-24T23:55:40.541539+00:00
+DATA_08_Load_750_750,dataset_real,PASS,rows=750; scored=0; pending=750; unknown_kev=0; ms=337.34; sha256=0aa2cb7c06cf545f80afcff27f622f112dfae4900d88d620bc4e4cb9585a8666,08_Load_750_750.xlsx,2026-10-24T23:55:40.879824+00:00
+DATA_09_Load_1000_1000,dataset_real,PASS,rows=1000; scored=0; pending=1000; unknown_kev=0; ms=418.71; sha256=f5eae7bfe158a79b0936e551f3db954e2ceab2ae4eeccbb4f40209f9b71ed861,09_Load_1000_1000.xlsx,2026-10-24T23:55:41.299512+00:00
+DATA_10_E2E_Full_V12_200,dataset_real,PASS,rows=200; scored=0; pending=200; unknown_kev=0; ms=94.44; sha256=b7a9afc94eea7c933bfa0b3f8ed83dd71933aba505276428bcccd9991ae16f12,10_E2E_Full_V12_200.xlsx,2026-10-24T23:55:41.394861+00:00
+TRACE_EXPORT,traceability,PASS,rows=3000; sha256=5888fa601c64bbdcaaca07cd3c427e7e34137e085587b6873c1d32e0a6f6ba4d,evidencia_riesgo_por_hallazgo.csv,2026-10-24T23:55:41.417687+00:00
+PERSIST_FILE,persistence,PASS,sha256=741b73304767494417a3511aabb9f7a0f97908dceff97ad33a6ed279172818e7,persistence_probe_corrected.json,2026-10-24T23:55:41.419284+00:00
+PERSIST_STREAMLIT,persistence,PENDING,No hay persistencia de hallazgos entre reinicios implementada/verificada; requiere prueba real de reinicio de servidor.,,2026-10-24T23:55:41.419293+00:00
+NVD_LIVE,enrichment,PENDING,No se consultaron fuentes externas; los metadatos del benchmark no prueban consulta NVD en vivo.,,2026-10-24T23:55:41.419297+00:00
+EPSS_LIVE,enrichment,PENDING,No se consultaron fuentes externas; ejecutar verificacion independiente con acceso a Internet.,,2026-10-24T23:55:41.419299+00:00
+GPU_INFERENCE,performance,PENDING,No se midio inferencia real de Ollama ni uso GPU; requiere 30 ejecuciones y telemetria.,,2026-10-24T23:55:41.419302+00:00
+STREAMLIT_E2E,performance,PENDING,"No se midio rendimiento UI real, ni persistencia entre sesiones.",,2026-10-24T23:55:41.419304+00:00

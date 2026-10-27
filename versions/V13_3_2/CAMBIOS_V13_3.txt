@@ -1,0 +1,8 @@
+V13.3 EXPERIMENTAL
+- CVSS ausente conservado como NaN, riesgo cuantitativo no calculable.
+- Señal de explotación/KEV dispara atención prioritaria, sin sustituir validación de activos.
+- RAG filtra documentos específicos no relacionados; general playbooks solo política.
+- Validación de estructura y banderas de revisión humana.
+- Telemetría adicional Ollama: carga, evaluación de prompt, tokens/s.
+- Ingesta elimina resultados antiguos ante fallo y presenta advertencias de calidad.
+- No se ha probado en HP Victus; validar allí antes de producción.

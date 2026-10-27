@@ -1,0 +1,14 @@
+{
+  "run_utc": "2026-10-24T23:55:41.419672+00:00",
+  "app_dir": "/mnt/data/v13fix/EMCALI_Cyber_V13_3_2_EXP",
+  "datasets_dir": "/mnt/data/v13fix/EMCALI_Cyber_V13_3_2_EXP/EMCALI_Cyber_V12_Benchmark_V2_Completo/EMCALI_Cyber_V12_Benchmark_V2/datasets",
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.41",
+  "counts": {
+    "PASS": 34,
+    "FAIL": 0,
+    "PENDING": 5
+  },
+  "results_sha256": "3fa28d8ad97c16e0e44bb2368361c79e11975c6042afd9578162f42aa173f0a5",
+  "method": "Motor real; benchmarks pueden contener CVSS/EPSS ausentes; no imputar."
+}

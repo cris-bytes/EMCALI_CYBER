@@ -1,0 +1,77 @@
+[
+  {
+    "file": "EMCALI_Cyber_V12_Benchmark_V2_Master.xlsx",
+    "sha256": "a9d8032723caabc330c07879baa64d5c52904ac3060003bfdec3740ae49392d1",
+    "bytes": 14781
+  },
+  {
+    "file": "README_BENCHMARK_V2.md",
+    "sha256": "28a8928e8247d96bdc9a0ce9cfa4502c1dadb5a3729b2a5bd9193154db2e341a",
+    "bytes": 1694
+  },
+  {
+    "file": "benchmark_master_seed.csv",
+    "sha256": "73bf4dbd410c933fc9a6cc715be6dc849c17d308d360bd1fce51936d2678acb9",
+    "bytes": 17183
+  },
+  {
+    "file": "datasets/01_Smoke_KEV_50.xlsx",
+    "sha256": "7bae41110d882e6b861c6e42050406b9da2b0e0d01f85817de8cd001f37b3eb0",
+    "bytes": 10503
+  },
+  {
+    "file": "datasets/02_Risk_Baseline_50.xlsx",
+    "sha256": "3b91e8e247ae4d14c942fbc1088dbaf887395c5d7cf769f2c0ee6c1a3f68235f",
+    "bytes": 10514
+  },
+  {
+    "file": "datasets/03_RAG_Local_50.xlsx",
+    "sha256": "488733b59df0fcf4b8dfb0b8f831e4e1813aa143600001a5ddf4d9bb0a46020c",
+    "bytes": 10516
+  },
+  {
+    "file": "datasets/04_RAG_Cloud_Controlled_50.xlsx",
+    "sha256": "2d3330f50a0a167fa41d248a86710bee36dae055bd667aba0f6ae1605588ca70",
+    "bytes": 10518
+  },
+  {
+    "file": "datasets/05_Load_100_100.xlsx",
+    "sha256": "fd2d196a2dbf7a835ba8df1672dff13bdc01a94999b88b2f3ed6b8f4e30d9e9c",
+    "bytes": 16630
+  },
+  {
+    "file": "datasets/06_Load_250_250.xlsx",
+    "sha256": "1aa80cfd3c66c50968586824c9360ffc0418cd3ca2b0f37ed421c6763c0f6865",
+    "bytes": 35037
+  },
+  {
+    "file": "datasets/07_Load_500_500.xlsx",
+    "sha256": "2fe1f6889fb0b6fb6fbebfe2d78447d2eab8c0a1e77669ca7208c387e8186287",
+    "bytes": 65567
+  },
+  {
+    "file": "datasets/08_Load_750_750.xlsx",
+    "sha256": "0aa2cb7c06cf545f80afcff27f622f112dfae4900d88d620bc4e4cb9585a8666",
+    "bytes": 96134
+  },
+  {
+    "file": "datasets/09_Load_1000_1000.xlsx",
+    "sha256": "f5eae7bfe158a79b0936e551f3db954e2ceab2ae4eeccbb4f40209f9b71ed861",
+    "bytes": 126673
+  },
+  {
+    "file": "datasets/10_E2E_Full_V12_200.xlsx",
+    "sha256": "b7a9afc94eea7c933bfa0b3f8ed83dd71933aba505276428bcccd9991ae16f12",
+    "bytes": 28934
+  },
+  {
+    "file": "results/EMCALI_Cyber_V12_Resultados_Pruebas_V2.xlsx",
+    "sha256": "e4e43b43b1f1167e6b7a8771edea90d79201974b7e17e5c77a5ce4ab04172439",
+    "bytes": 5001
+  },
+  {
+    "file": "scripts/refresh_official_metrics.py",
+    "sha256": "62ada40decca573f4c9d3479566a80a49c315d0bd5ba89fb6aad77ca169ee953",
+    "bytes": 2615
+  }
+]

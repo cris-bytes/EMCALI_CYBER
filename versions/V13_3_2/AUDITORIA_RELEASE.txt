@@ -1,0 +1,22 @@
+AUDITORÍA DE RELEASE — EMCALI CYBER 2.0 HÍBRIDO V12
+====================================================
+Fuente recibida: EMCALI_Cyber20_Hibrido_V12_1_CORREGIDA_HP_Victus_RTX4050(1).zip
+
+Validaciones realizadas:
+- Estructura principal app.py/core/pages/assets presente.
+- 23 archivos Python funcionales compilados sintácticamente: 0 errores.
+- No se encontraron referencias funcionales a V13 ni Performance Lab.
+- Configuración local predeterminada: Ollama + phi3:mini.
+- Timeout Ollama: 900 s; contexto: 2048; num_predict: 256.
+- Fallback local habilitado; fallbacks cloud deshabilitados por defecto.
+- Módulo Aceleración IA/GPU presente.
+- psutil>=6.0 incluido en requirements.txt.
+- Correcciones V12.1 para HP Victus RTX 4050 preservadas.
+- Se excluyeron del release limpio: .venv dependiente del equipo, BACKUPS, parches históricos,
+  copia duplicada EMCALI_Cyber20_Hibrido_App y .env local.
+
+Observación de portabilidad:
+El .venv original fue creado con Python 3.12.0 instalado en
+C:\Users\pc\AppData\Local\Programs\Python\Python312 y no constituye por sí solo un runtime
+universal de Windows. El release limpio recrea .venv en el equipo destino mediante los
+lanzadores BAT. La edición PORTABLE_HP_Victus conserva el .venv probado en el equipo fuente.
