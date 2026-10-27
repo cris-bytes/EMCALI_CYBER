@@ -1,0 +1,12 @@
+EMCALI Cyber 2.0 Híbrido V12.1 - Corrección HP Victus RTX 4050
+
+1. Agregado psutil>=6.0 a requirements.txt.
+2. Sincronizadas las dos configuraciones existentes en V12 (session_state y .emcali_llm_config.json).
+3. Fallback cloud ya no queda activado por defecto cuando está deshabilitado en Configuración.
+4. Ollama: compatibilidad /api/generate -> /api/chat cuando /api/generate responde HTTP 404.
+5. Diagnóstico GPU corregido: distingue GPU, CPU, HYBRID, IDLE y UNKNOWN.
+6. Un Ollama inactivo ya no se reporta erróneamente como CPU.
+7. Clientes cloud leen las API keys guardadas en la configuración Enterprise además de variables de entorno.
+8. Benchmark local incluye fallback /api/chat ante HTTP 404.
+
+Prueba recomendada: ejecutar run_app_con_ollama.bat, abrir Aceleración IA/GPU y ejecutar Benchmark rápido con phi3:mini.

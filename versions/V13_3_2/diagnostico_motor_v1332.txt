@@ -1,0 +1,362 @@
+﻿=== MOTOR DE RIESGO ===
+"""V13.3.2 experimental: weighted risk, 0..100; unknown != zero."""
+import math
+import pandas as pd
+WEIGHTS = {'cvss': .25, 'epss': .20, 'kev': .20, 'asset_criticality': .15, 'exposure': .10, 'operational_impact': .10}
+LEVELS = {'low': 25., 'medium': 50., 'med': 50., 'high': 75., 'critical': 100., 'very high': 100.}
+EXPOSURE = {'internal': 25., 'interna':25., 'lan':25., 'dmz':75., 'internet':100., 'public':100., 'external':100., 'externa':100., 'isolated':0., 'aislado':0.}
+TRUE = {'true','yes','1','si','sí','kev'}
+FALSE = {'false','no','0'}
+def number(value, low, high):
+    try:
+        x=float(value)
+        return x if math.isfinite(x) and low <= x <= high else None
+    except (TypeError,ValueError): return None
+
+def factor_level(value, mapping):
+    if value is None or pd.isna(value): return None
+    s=str(value).strip().lower()
+    if s in mapping: return mapping[s]
+    # Explicit numeric factors on a 0..100 scale, not guessed categories.
+    return number(value,0,100)
+
+def evaluate(row):
+    cvss=number(row.get('cvss'),0,10)
+    epss=number(row.get('epss'),0,1)
+    kev_value=row.get('cisa_kev')
+    kev_text=str(kev_value).strip().lower() if kev_value is not None else ''
+    kev=100. if kev_text in TRUE else 0. if kev_text in FALSE else None
+    values={'cvss':cvss*10 if cvss is not None else None,
+            'epss':epss*100 if epss is not None else None,
+            'kev':kev,
+            'asset_criticality':factor_level(row.get('asset_criticality'),LEVELS),
+            'exposure':factor_level(row.get('exposure'),EXPOSURE),
+            'operational_impact':factor_level(row.get('operational_impact'),LEVELS)}
+    missing=[k for k,v in values.items() if v is None]
+    weighted=sum(WEIGHTS[k]*v for k,v in values.items() if v is not None)
+    known_weight=sum(WEIGHTS[k] for k,v in values.items() if v is not None)
+    # Interval bounds explicitly show uncertainty, rather than treating unknown as zero.
+    lower=round(weighted,2)
+    upper=round(weighted+100*(1-known_weight),2)
+    score=round(weighted,2) if not missing else None
+    band=('Pendiente de evaluación' if score is None else
+          'Crítico' if score>=80 else 'Alto' if score>=60 else 'Medio' if score>=40 else 'Bajo')
+    return {'score':score,'band':band,'coverage_pct':round(known_weight*100,1),
+            'risk_min':lower,'risk_max':upper,'missing_factors':', '.join(missing),
+            'components':values,'method':'V13.3.2 weighted prototype; no empirical calibration'}
+
+def evaluate_dataframe(df):
+    work=df.copy()
+    if work.empty:
+        for col in ('priority_score','risk_band_v1332','risk_coverage_pct','risk_min','risk_max','risk_missing_factors'):
+            work[col]=pd.Series(dtype='object')
+        return work
+    results=[evaluate(row) for _,row in work.iterrows()]
+    work['priority_score']=[r['score'] for r in results]
+    work['risk_band_v1332']=[r['band'] for r in results]
+    work['risk_coverage_pct']=[r['coverage_pct'] for r in results]
+    work['risk_min']=[r['risk_min'] for r in results]
+    work['risk_max']=[r['risk_max'] for r in results]
+    work['risk_missing_factors']=[r['missing_factors'] for r in results]
+    return work
+=== PUENTE DE ENRIQUECIMIENTO ===
+from __future__ import annotations
+import re
+import pandas as pd
+
+CVE_RE = re.compile(r"^CVE-\d{4}-\d{4,}$", re.I)
+
+
+def _cve(value):
+    if pd.isna(value):
+        return ''
+    text = str(value).strip().upper()
+    return text if CVE_RE.fullmatch(text) else ''
+
+
+def _numeric(value, low, high):
+    try:
+        number = float(value)
+        return number if pd.notna(number) and low <= number <= high else None
+    except (TypeError, ValueError):
+        return None
+
+
+def summarize_provenance(data):
+    data = data.copy()
+    cvss = pd.to_numeric(data.get('cvss', pd.Series(dtype=float)), errors='coerce')
+    epss = pd.to_numeric(data.get('epss', pd.Series(dtype=float)), errors='coerce')
+    status = data.get('nvd_status', pd.Series(index=data.index, dtype='object')).astype('string').str.lower()
+    source = data.get('cvss_source', pd.Series(index=data.index, dtype='object'))
+    date = data.get('epss_date', pd.Series(index=data.index, dtype='object'))
+    return {'rows': len(data), 'nvd_analyzed': int(status.eq('analyzed').sum()),
+            'cvss_with_source': int((cvss.between(0,10) & source.notna()).sum()),
+            'epss_with_date': int((epss.between(0,1) & date.notna()).sum())}
+
+
+def integrate_enriched_file(base, enriched):
+    if 'cve' not in base.columns or 'cve' not in enriched.columns:
+        raise ValueError('Ambos conjuntos deben tener columna cve.')
+    if 'nvd_status' not in enriched.columns or 'epss_date' not in enriched.columns:
+        raise ValueError('Faltan metadatos de NVD/EPSS. Importe el archivo enriquecido, no el benchmark original.')
+    lookup = enriched.copy()
+    lookup['_cve_key'] = lookup['cve'].map(_cve)
+    lookup = lookup[lookup['_cve_key'] != '']
+    if lookup['_cve_key'].duplicated().any():
+        duplicate = lookup.loc[lookup['_cve_key'].duplicated(), '_cve_key'].iloc[0]
+        raise ValueError(f'CVE duplicado en archivo enriquecido: {duplicate}. Resolver antes de importar.')
+    lookup = lookup.set_index('_cve_key')
+    result = base.copy()
+    for field in ['cvss', 'epss', 'epss_percentile']:
+        if field not in result.columns:
+            result[field] = float('nan')
+        result[field] = pd.to_numeric(result[field], errors='coerce').astype(float)
+    metadata = ['cvss_version','cvss_vector','cvss_source','cvss_severity',
+                'epss_date','nvd_status','nvd_url','nvd_published','nvd_modified',
+                'enriched_at','nvd_error','epss_error']
+    for field in metadata:
+        if field not in result.columns:
+            result[field] = pd.Series(index=result.index, dtype='object')
+        else:
+            result[field] = result[field].astype('object')
+    matched = cvss_verified = epss_verified = 0
+    for idx, row in result.iterrows():
+        key = _cve(row['cve'])
+        if not key or key not in lookup.index:
+            continue
+        matched += 1
+        rec = lookup.loc[key]
+        nvd_status = str(rec.get('nvd_status', '')).lower()
+        cvss = _numeric(rec.get('cvss'), 0, 10)
+        epss = _numeric(rec.get('epss'), 0, 1)
+        cvss_source = rec.get('cvss_source')
+        epss_date = rec.get('epss_date')
+        nvd_ok = nvd_status not in ('', 'nan', 'none', 'query_error', 'not_found') and pd.notna(cvss_source)
+        epss_ok = pd.notna(epss_date) and str(epss_date).lower() not in ('', 'nan', 'none') and pd.isna(rec.get('epss_error'))
+        if cvss is not None and nvd_ok:
+            result.at[idx, 'cvss'] = cvss
+            cvss_verified += 1
+            if 'severity' in result.columns:
+                result.at[idx, 'severity'] = ('Critical' if cvss >= 9 else 'High' if cvss >= 7 else 'Medium' if cvss >= 4 else 'Low')
+        if epss is not None and epss_ok:
+            result.at[idx, 'epss'] = epss
+            epss_verified += 1
+            percentile = _numeric(rec.get('epss_percentile'), 0, 1)
+            if percentile is not None:
+                result.at[idx, 'epss_percentile'] = percentile
+        for field in metadata:
+            value = rec.get(field)
+            if pd.notna(value):
+                result.at[idx, field] = str(value)
+        if 'exploitability' in result.columns:
+            kev = str(row.get('cisa_kev', '')).lower() in ('true','1','yes','sí','si')
+            if kev or (epss is not None and epss_ok and epss >= .7) or (cvss is not None and nvd_ok and cvss >= 9):
+                result.at[idx, 'exploitability'] = 'High'
+            elif (epss is not None and epss_ok and epss >= .2) or (cvss is not None and nvd_ok and cvss >= 6):
+                result.at[idx, 'exploitability'] = 'Medium'
+            elif epss_ok or nvd_ok:
+                result.at[idx, 'exploitability'] = 'Low'
+        if 'data_quality_flags' in result.columns:
+            flags = str(row.get('data_quality_flags') or '')
+            parts = [f.strip() for f in flags.split(';') if f.strip() and f.strip().lower() not in ('nan','none')]
+            if cvss is not None and nvd_ok:
+                parts = [f for f in parts if f != 'CVSS no disponible']
+            if epss is not None and epss_ok:
+                parts = [f for f in parts if f != 'EPSS no disponible']
+            result.at[idx, 'data_quality_flags'] = '; '.join(parts)
+    summary = {'matched': matched, 'unmatched': len(base)-matched,
+               'cvss_verified': cvss_verified, 'epss_verified': epss_verified,
+               'source_file_rows': len(enriched), 'source_audit': summarize_provenance(enriched),
+               'note': 'Metadatos del archivo importado; no constituyen verificación independiente en línea.'}
+    return result, summary
+=== CONSULTAS NVD Y EPSS ===
+
+import time
+import requests
+import pandas as pd
+from datetime import datetime, timezone
+
+NVD_URL = "https://services.nvd.nist.gov/rest/json/cves/2.0"
+EPSS_URL = "https://api.first.org/data/v1/epss"
+
+def consultar_nvd(cve_id, api_key=None):
+    headers = {"User-Agent": "EMCALI-Cyber-Research/13.3.1"}
+    if api_key:
+        headers["apiKey"] = api_key
+
+    response = requests.get(
+        NVD_URL,
+        params={"cveId": cve_id},
+        headers=headers,
+        timeout=30
+    )
+    response.raise_for_status()
+
+    vulnerabilities = response.json().get("vulnerabilities", [])
+    if not vulnerabilities:
+        return {"nvd_status": "not_found"}
+
+    record = vulnerabilities[0]["cve"]
+    metrics = record.get("metrics", {})
+
+    selected = None
+    version = None
+
+    for key, label in [
+        ("cvssMetricV40", "4.0"),
+        ("cvssMetricV31", "3.1"),
+        ("cvssMetricV30", "3.0"),
+        ("cvssMetricV2", "2.0"),
+    ]:
+        candidates = metrics.get(key, [])
+        if candidates:
+            selected = next(
+                (x for x in candidates if x.get("type") == "Primary"),
+                candidates[0]
+            )
+            version = label
+            break
+
+    cvss_data = selected.get("cvssData", {}) if selected else {}
+
+    return {
+        "nvd_status": record.get("vulnStatus", "unknown"),
+        "cvss": cvss_data.get("baseScore"),
+        "cvss_version": version,
+        "cvss_vector": cvss_data.get("vectorString"),
+        "cvss_severity": cvss_data.get("baseSeverity"),
+        "cvss_source": selected.get("source") if selected else None,
+        "nvd_published": record.get("published"),
+        "nvd_modified": record.get("lastModified"),
+        "nvd_url": f"https://nvd.nist.gov/vuln/detail/{cve_id}",
+    }
+
+
+def consultar_epss(cve_ids):
+    response = requests.get(
+        EPSS_URL,
+        params={"cve": ",".join(cve_ids)},
+        timeout=30
+    )
+    response.raise_for_status()
+
+    return {
+        item["cve"]: {
+            "epss": float(item["epss"]),
+            "epss_percentile": float(item["percentile"]),
+            "epss_date": item.get("date"),
+        }
+        for item in response.json().get("data", [])
+    }
+
+
+def enriquecer_hallazgos(df, api_key=None):
+    result = df.copy()
+    if "cve" not in result.columns:
+        raise ValueError("Falta la columna cve")
+    cves = sorted({
+        str(cve).strip().upper()
+        for cve in result["cve"].dropna()
+        if str(cve).strip().upper().startswith("CVE-")
+    })
+
+    epss_data = {}
+    epss_error = None
+    if cves:
+        try:
+            epss_data = consultar_epss(cves)
+        except requests.RequestException as exc:
+            epss_error = str(exc)
+    nvd_data = {}
+
+    for cve in cves:
+        try:
+            nvd_data[cve] = consultar_nvd(cve, api_key)
+        except requests.RequestException as exc:
+            nvd_data[cve] = {
+                "nvd_status": "query_error",
+                "nvd_error": str(exc)
+            }
+
+        time.sleep(0.6 if api_key else 6.0)
+
+    # Columnas numéricas: CVSS y EPSS
+    numeric_columns = [
+        "cvss",
+        "epss",
+        "epss_percentile",
+    ]
+
+    # Columnas de texto: versiones, vectores y procedencia
+    text_columns = [
+        "cvss_version",
+        "cvss_vector",
+        "cvss_severity",
+        "cvss_source",
+        "epss_date",
+        "nvd_status",
+        "nvd_published",
+        "nvd_modified",
+        "nvd_url",
+        "enriched_at",
+        "nvd_error",
+        "epss_error",
+    ]
+
+    for column in numeric_columns:
+        if column not in result.columns:
+            result[column] = pd.Series(
+                float("nan"), index=result.index
+            )
+        else:
+            result[column] = pd.to_numeric(
+                result[column], errors="coerce"
+            )
+
+    for column in text_columns:
+        if column not in result.columns:
+            result[column] = pd.Series(
+                pd.NA, index=result.index, dtype="object"
+            )
+        else:
+            result[column] = result[column].astype("object")
+
+
+    for idx, row in result.iterrows():
+        cve = str(row.get("cve", "")).strip().upper()
+        nvd = nvd_data.get(cve, {})
+        epss = epss_data.get(cve, {})
+
+        if nvd.get("nvd_error"):
+            result.at[idx, "nvd_error"] = nvd["nvd_error"]
+        if epss_error:
+            result.at[idx, "epss_error"] = epss_error
+
+        for field in [
+            "cvss", "cvss_version", "cvss_vector",
+            "cvss_severity", "cvss_source",
+            "nvd_status", "nvd_published",
+            "nvd_modified", "nvd_url"
+        ]:
+            if field in nvd and nvd[field] is not None:
+                result.at[idx, field] = nvd[field]
+
+        for field, value in epss.items():
+            result.at[idx, field] = value
+
+        result.at[idx, "enriched_at"] = (
+            datetime.now(timezone.utc).isoformat()
+        )
+
+    return result
+=== REFERENCIAS A LOS MODULOS ===
+C:\EMCALI_Cyber_V13_3_2_EXP\ejecutar_bateria2_corregida_v13.py:32: from core.risk_engine_v1332 import evaluate, evaluate_dataframe, WEIGHTS
+C:\EMCALI_Cyber_V13_3_2_EXP\ejecutar_bateria2_corregida_v13.py:34: check('IMPORT_REAL','integration','PASS','core.normalizer + core.risk_engine_v1332.evaluate_dataframe importados (mismo motor que usa core.analysis.risk_matrix)')
+C:\EMCALI_Cyber_V13_3_2_EXP\ejecutar_pruebas_v1332.py:11: from core.risk_engine_v1332 import evaluate, evaluate_dataframe
+C:\EMCALI_Cyber_V13_3_2_EXP\ejecutar_pruebas_v1332.py:12: from core.enrichment_bridge import integrate_enriched_file
+C:\EMCALI_Cyber_V13_3_2_EXP\ejecutar_pruebas_v1332_rds.py:11: from core.risk_engine_v1332 import evaluate, evaluate_dataframe
+C:\EMCALI_Cyber_V13_3_2_EXP\ejecutar_pruebas_v1332_rds.py:12: from core.enrichment_bridge import integrate_enriched_file
+C:\EMCALI_Cyber_V13_3_2_EXP\core\analysis.py:7: from .risk_engine_v1332 import evaluate_dataframe, evaluate
+C:\EMCALI_Cyber_V13_3_2_EXP\core\quality_v133.py:4: from .risk_engine_v1332 import evaluate
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py:81: def enriquecer_hallazgos(df, api_key=None):
+C:\EMCALI_Cyber_V13_3_2_EXP\pages\ingest.py:6: from core.enrichment_bridge import integrate_enriched_file, summarize_provenance

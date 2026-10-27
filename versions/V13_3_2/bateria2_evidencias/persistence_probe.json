@@ -1,0 +1,1 @@
+{"run_utc": "2026-10-24T23:31:30.472836+00:00", "sentinel": "EMCALI-V13-B2", "weights": {"asset_criticality": 0.15, "cisa_kev": 0.2, "cvss": 0.25, "epss": 0.2, "exposure": 0.1, "operational_impact": 0.1}}

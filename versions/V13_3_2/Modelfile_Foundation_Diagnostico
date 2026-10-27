@@ -1,0 +1,15 @@
+﻿FROM emcali-foundation-sec:8b-q4
+
+TEMPLATE """{{ if .System }}<|start_header_id|>system<|end_header_id|>
+
+{{ .System }}<|eot_id|>{{ end }}<|start_header_id|>user<|end_header_id|>
+
+{{ .Prompt }}<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+"""
+
+SYSTEM """Eres un asistente de análisis defensivo de vulnerabilidades. No inventes evidencias ni métricas."""
+
+PARAMETER num_ctx 2048
+PARAMETER num_predict 128
+PARAMETER temperature 0.1

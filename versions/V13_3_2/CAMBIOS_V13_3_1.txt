@@ -1,0 +1,19 @@
+EMCALI Cyber 2.0 V13.3.1 EXPERIMENTAL - parche de mantenimiento
+
+1. pages/risk.py: la gráfica Plotly excluye registros con priority_score ausente, no numérico, cero o negativo; no inventa puntuaciones; informa pendientes.
+2. core/analysis.py: instrucciones adicionales para que el LLM no confunda servicios sin clasificar con servicios no críticos ni asegure disponibilidad de parches no verificados.
+3. Código compilado sintácticamente; verificar la aplicación en Windows/HP Victus antes de aprobar.
+
+LIMITACIONES:
+- No se verificó ejecución real en GPU RTX 4050 ni benchmark Windows.
+- La validación automática de grounding sigue siendo experimental.
+- No se modifica el motor de cálculo de riesgo ni se rellenan CVSS/EPSS faltantes.
+- La V12 aprobada permanece intacta.
+
+INSTALACION:
+A) Cerrar Streamlit. Respaldar la carpeta V13.3 actual.
+B) Descomprimir este ZIP en una carpeta NUEVA (V13.3.1), no sobre V12.
+C) Crear entorno virtual Windows e instalar requirements.txt o reutilizar el entorno V13.3 existente de forma controlada.
+D) Copiar sus ajustes locales/secretos de manera privada si se requieren (no incluidos en este ZIP).
+E) Ejecutar run_app.bat y probar Riesgo con datos que tengan CVSS ausente y válido.
+F) Ejecutar ollama ps y nvidia-smi -l 1 durante inferencia para verificar GPU.

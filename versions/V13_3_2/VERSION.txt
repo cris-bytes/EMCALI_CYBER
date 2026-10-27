@@ -1,0 +1,2 @@
+EMCALI Cyber 2.0 Híbrido Enterprise V13.3 EXPERIMENTAL
+Corrección calidad, riesgo, RAG y evaluación. V12 sin cambios.

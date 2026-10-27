@@ -1,0 +1,16 @@
+EMCALI CYBER V13.3 EXPERIMENTAL - INSTALACIÓN WINDOWS
+
+1. Conservar intactas las carpetas V12 aprobada y V13.2.
+2. Extraer este ZIP en una carpeta NUEVA de Windows.
+3. En PowerShell, desde esa carpeta:
+   py -3.12 -m venv .venv
+   .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+   .\.venv\Scripts\python.exe -m pip install openpyxl
+4. Confirmar que Ollama responde en http://127.0.0.1:11434 y que el modelo está instalado.
+5. Iniciar:
+   .\.venv\Scripts\python.exe -m streamlit run app.py
+6. Abrir http://localhost:8501 y configurar Ollama/num_predict=1024.
+
+NOTA: Este ZIP incluye código fuente, NO incluye .venv ni pesos GGUF.
+Configuración y modelos de la versión anterior no se migran automáticamente.
+Antes de producción, validar pruebas en HP Victus. El puntaje V13.3 es heurístico y NO una escala calibrada de riesgo.

@@ -1,0 +1,48 @@
+﻿test_id,category,status,dataset,elapsed_ms,detail,evidence,utc
+ENV_app,environment,PASS,,,C:\EMCALI_Cyber_V13_3_2_EXP,,2026-10-24T23:31:30.583969+00:00
+ENV_datasets,environment,PASS,,,C:\EMCALI_Cyber_V12_Benchmark_V2_Completo\EMCALI_Cyber_V12_Benchmark_V2\datasets,,2026-10-24T23:31:30.583993+00:00
+REF_all_zero,reference_formula,PASS,,0.035,reference=0.0 expected=0,,2026-10-24T23:31:30.584056+00:00
+REF_all_max,reference_formula,PASS,,0.009,reference=100.0 expected=100,,2026-10-24T23:31:30.584070+00:00
+REF_cvss_only,reference_formula,PASS,,0.007,reference=25.0 expected=25,,2026-10-24T23:31:30.584081+00:00
+REF_epss_only,reference_formula,PASS,,0.006,reference=20.0 expected=20,,2026-10-24T23:31:30.584089+00:00
+REF_kev_only,reference_formula,PASS,,0.006,reference=20.0 expected=20,,2026-10-24T23:31:30.584098+00:00
+REF_criticality_only,reference_formula,PASS,,0.006,reference=15.0 expected=15,,2026-10-24T23:31:30.584106+00:00
+REF_exposure_only,reference_formula,PASS,,0.006,reference=10.0 expected=10,,2026-10-24T23:31:30.584114+00:00
+REF_impact_only,reference_formula,PASS,,0.006,reference=10.0 expected=10,,2026-10-24T23:31:30.584123+00:00
+REF_missing_cvss,missing_reference,PASS,,0.003,reference=None,,2026-10-24T23:31:30.584130+00:00
+REF_missing_epss,missing_reference,PASS,,0.001,reference=None,,2026-10-24T23:31:30.584134+00:00
+REF_missing_cisa_kev,missing_reference,PASS,,0.001,reference=None,,2026-10-24T23:31:30.584138+00:00
+REF_missing_asset_criticality,missing_reference,PASS,,0.001,reference=None,,2026-10-24T23:31:30.584141+00:00
+REF_missing_exposure,missing_reference,PASS,,0.001,reference=None,,2026-10-24T23:31:30.584145+00:00
+REF_missing_operational_impact,missing_reference,PASS,,0.001,reference=None,,2026-10-24T23:31:30.584150+00:00
+ENGINE_IMPORT,engine,PASS,,,Funcion encontrada: (df: 'pd.DataFrame') -> 'pd.DataFrame',C:\EMCALI_Cyber_V13_3_2_EXP\core\analysis.py,2026-10-24T23:31:35.479411+00:00
+DATA_001,datasets,PASS,01_Smoke_KEV_50.xlsx,204.065,rows=50 cols=23 valid_cves=50 sha256=7bae41110d882e6b861c6e42050406b9da2b0e0d01f85817de8cd001f37b3eb0,C:\EMCALI_Cyber_V12_Benchmark_V2_Completo\EMCALI_Cyber_V12_Benchmark_V2\datasets\01_Smoke_KEV_50.xlsx,2026-10-24T23:31:35.683990+00:00
+COVERAGE_001,six_factors,PENDING,01_Smoke_KEV_50.xlsx,,"Columnas presentes=['cisa_kev', 'asset_criticality', 'exposure', 'operational_impact']; faltantes=['cvss', 'epss']. Requiere mapeo explicito y ejecucion del motor.",,2026-10-24T23:31:35.684012+00:00
+DATA_002,datasets,PASS,02_Risk_Baseline_50.xlsx,13.516,rows=50 cols=23 valid_cves=50 sha256=3b91e8e247ae4d14c942fbc1088dbaf887395c5d7cf769f2c0ee6c1a3f68235f,C:\EMCALI_Cyber_V12_Benchmark_V2_Completo\EMCALI_Cyber_V12_Benchmark_V2\datasets\02_Risk_Baseline_50.xlsx,2026-10-24T23:31:35.697547+00:00
+COVERAGE_002,six_factors,PENDING,02_Risk_Baseline_50.xlsx,,"Columnas presentes=['cisa_kev', 'asset_criticality', 'exposure', 'operational_impact']; faltantes=['cvss', 'epss']. Requiere mapeo explicito y ejecucion del motor.",,2026-10-24T23:31:35.697575+00:00
+DATA_003,datasets,PASS,03_RAG_Local_50.xlsx,14.025,rows=50 cols=23 valid_cves=50 sha256=488733b59df0fcf4b8dfb0b8f831e4e1813aa143600001a5ddf4d9bb0a46020c,C:\EMCALI_Cyber_V12_Benchmark_V2_Completo\EMCALI_Cyber_V12_Benchmark_V2\datasets\03_RAG_Local_50.xlsx,2026-10-24T23:31:35.711619+00:00
+COVERAGE_003,six_factors,PENDING,03_RAG_Local_50.xlsx,,"Columnas presentes=['cisa_kev', 'asset_criticality', 'exposure', 'operational_impact']; faltantes=['cvss', 'epss']. Requiere mapeo explicito y ejecucion del motor.",,2026-10-24T23:31:35.711681+00:00
+DATA_004,datasets,PASS,04_RAG_Cloud_Controlled_50.xlsx,15.09,rows=50 cols=23 valid_cves=50 sha256=2d3330f50a0a167fa41d248a86710bee36dae055bd667aba0f6ae1605588ca70,C:\EMCALI_Cyber_V12_Benchmark_V2_Completo\EMCALI_Cyber_V12_Benchmark_V2\datasets\04_RAG_Cloud_Controlled_50.xlsx,2026-10-24T23:31:35.726790+00:00
+COVERAGE_004,six_factors,PENDING,04_RAG_Cloud_Controlled_50.xlsx,,"Columnas presentes=['cisa_kev', 'asset_criticality', 'exposure', 'operational_impact']; faltantes=['cvss', 'epss']. Requiere mapeo explicito y ejecucion del motor.",,2026-10-24T23:31:35.726818+00:00
+DATA_005,datasets,PASS,05_Load_100_100.xlsx,20.799,rows=100 cols=23 valid_cves=100 sha256=fd2d196a2dbf7a835ba8df1672dff13bdc01a94999b88b2f3ed6b8f4e30d9e9c,C:\EMCALI_Cyber_V12_Benchmark_V2_Completo\EMCALI_Cyber_V12_Benchmark_V2\datasets\05_Load_100_100.xlsx,2026-10-24T23:31:35.747634+00:00
+COVERAGE_005,six_factors,PENDING,05_Load_100_100.xlsx,,"Columnas presentes=['cisa_kev', 'asset_criticality', 'exposure', 'operational_impact']; faltantes=['cvss', 'epss']. Requiere mapeo explicito y ejecucion del motor.",,2026-10-24T23:31:35.747660+00:00
+DATA_006,datasets,PASS,06_Load_250_250.xlsx,43.534,rows=250 cols=23 valid_cves=250 sha256=1aa80cfd3c66c50968586824c9360ffc0418cd3ca2b0f37ed421c6763c0f6865,C:\EMCALI_Cyber_V12_Benchmark_V2_Completo\EMCALI_Cyber_V12_Benchmark_V2\datasets\06_Load_250_250.xlsx,2026-10-24T23:31:35.791210+00:00
+COVERAGE_006,six_factors,PENDING,06_Load_250_250.xlsx,,"Columnas presentes=['cisa_kev', 'asset_criticality', 'exposure', 'operational_impact']; faltantes=['cvss', 'epss']. Requiere mapeo explicito y ejecucion del motor.",,2026-10-24T23:31:35.791236+00:00
+DATA_007,datasets,PASS,07_Load_500_500.xlsx,128.22,rows=500 cols=23 valid_cves=500 sha256=2fe1f6889fb0b6fb6fbebfe2d78447d2eab8c0a1e77669ca7208c387e8186287,C:\EMCALI_Cyber_V12_Benchmark_V2_Completo\EMCALI_Cyber_V12_Benchmark_V2\datasets\07_Load_500_500.xlsx,2026-10-24T23:31:35.919478+00:00
+COVERAGE_007,six_factors,PENDING,07_Load_500_500.xlsx,,"Columnas presentes=['cisa_kev', 'asset_criticality', 'exposure', 'operational_impact']; faltantes=['cvss', 'epss']. Requiere mapeo explicito y ejecucion del motor.",,2026-10-24T23:31:35.919517+00:00
+DATA_008,datasets,PASS,08_Load_750_750.xlsx,187.419,rows=750 cols=23 valid_cves=750 sha256=0aa2cb7c06cf545f80afcff27f622f112dfae4900d88d620bc4e4cb9585a8666,C:\EMCALI_Cyber_V12_Benchmark_V2_Completo\EMCALI_Cyber_V12_Benchmark_V2\datasets\08_Load_750_750.xlsx,2026-10-24T23:31:36.106963+00:00
+COVERAGE_008,six_factors,PENDING,08_Load_750_750.xlsx,,"Columnas presentes=['cisa_kev', 'asset_criticality', 'exposure', 'operational_impact']; faltantes=['cvss', 'epss']. Requiere mapeo explicito y ejecucion del motor.",,2026-10-24T23:31:36.107011+00:00
+DATA_009,datasets,PASS,09_Load_1000_1000.xlsx,254.455,rows=1000 cols=23 valid_cves=1000 sha256=f5eae7bfe158a79b0936e551f3db954e2ceab2ae4eeccbb4f40209f9b71ed861,C:\EMCALI_Cyber_V12_Benchmark_V2_Completo\EMCALI_Cyber_V12_Benchmark_V2\datasets\09_Load_1000_1000.xlsx,2026-10-24T23:31:36.361495+00:00
+COVERAGE_009,six_factors,PENDING,09_Load_1000_1000.xlsx,,"Columnas presentes=['cisa_kev', 'asset_criticality', 'exposure', 'operational_impact']; faltantes=['cvss', 'epss']. Requiere mapeo explicito y ejecucion del motor.",,2026-10-24T23:31:36.361537+00:00
+DATA_010,datasets,PASS,10_E2E_Full_V12_200.xlsx,62.839,rows=200 cols=23 valid_cves=200 sha256=b7a9afc94eea7c933bfa0b3f8ed83dd71933aba505276428bcccd9991ae16f12,C:\EMCALI_Cyber_V12_Benchmark_V2_Completo\EMCALI_Cyber_V12_Benchmark_V2\datasets\10_E2E_Full_V12_200.xlsx,2026-10-24T23:31:36.424402+00:00
+COVERAGE_010,six_factors,PENDING,10_E2E_Full_V12_200.xlsx,,"Columnas presentes=['cisa_kev', 'asset_criticality', 'exposure', 'operational_impact']; faltantes=['cvss', 'epss']. Requiere mapeo explicito y ejecucion del motor.",,2026-10-24T23:31:36.424441+00:00
+PERSIST_FILE,file_persistence,PASS,,23.971,file_sha256=413dee7590a318b6dc4b3fa476c23a0c9363e3a8d60fec0ed7aeb6803fc17658,C:\EMCALI_Cyber_V13_3_2_EXP\bateria2_evidencias\persistence_probe.json,2026-10-24T23:31:36.448437+00:00
+PERSIST_STREAMLIT,streamlit_persistence,PENDING,,,"Reiniciar Streamlit, recargar la misma evidencia y verificar que los datos persisten sin st.session_state; requiere adaptador de almacenamiento y prueba manual/automatizada de interfaz.",,2026-10-24T23:31:36.448466+00:00
+ENGINE_SIX_FACTOR,engine,PENDING,,,Falta ejecutar comparacion contra motor V13.3.2 con un fixture de seis factores normalizados 0..100 y score esperado; no inferir firma o mapeo.,,2026-10-24T23:31:36.448472+00:00
+ENGINE_SENSITIVITY,engine,PENDING,,,Comparar variacion individual de cada factor en motor real y comprobar monotonicidad y delta segun pesos.,,2026-10-24T23:31:36.448476+00:00
+GPU_DETECT,hardware,PASS,,,"NVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB, 616.92, 0 %",nvidia-smi,2026-10-24T23:31:38.101428+00:00
+GPU_INFERENCE,performance,PENDING,,,"Ejecutar N>=30 inferencias locales; registrar modelo, prompt, tokens, latencia p50/p95, GPU VRAM/uso, CPU/RAM, errores y warmup.",,2026-10-24T23:31:38.101455+00:00
+PERF_STREAMLIT,performance,PENDING,,,Medir importacion/riesgo end-to-end con 50/100/250/500/750/1000 registros; p50/p95 de al menos 5 repeticiones por carga.,,2026-10-24T23:31:38.101464+00:00
+NVD_LIVE,enrichment,PENDING,,,No se consulto NVD; activar --online,,2026-10-24T23:31:38.101474+00:00
+EPSS_LIVE,enrichment,PENDING,,,No se consulto FIRST EPSS; activar --online,,2026-10-24T23:31:38.101481+00:00
+ENRICH_APP,enrichment,PENDING,,,"Comparar CVSS/EPSS importados con respuestas oficiales, fuente, fecha, vector y ausencia de imputaciones; requiere adaptador de importacion V13.3.2.",,2026-10-24T23:31:38.101488+00:00

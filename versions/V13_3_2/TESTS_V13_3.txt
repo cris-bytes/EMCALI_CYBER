@@ -1,0 +1,10 @@
+Pruebas de regresión recomendadas:
+01 Ingestar 01_Smoke_KEV_50.xlsx: 50 registros, CVSS ausente = NaN, KEV conservado.
+02 Analizar N-00001: prioridad cualitativa por explotación; puntuación no calculable sin CVSS.
+03 Verificar que no se adjunta Log4Shell al CVE Apple.
+04 Configurar 1024 tokens, obtener seis secciones completas.
+05 Revisar quality_validation y human_review_required.
+06 Verificar raw_usage: eval_count, eval_duration, load_duration, prompt_eval_duration.
+07 Comparar misma entrada contra CyberSec-Assistant-3B.
+08 Probar un CVE sin KEV y sin CVSS: pendiente de evaluación, nunca bajo por defecto.
+09 Probar error de ingesta: no presentar registros de demostración como si fueran nuevos.
