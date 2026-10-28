@@ -1,0 +1,33 @@
+﻿test_id,category,dataset,expected,actual,status,elapsed_ms,detail
+R01,unit,synthetic,score 56.00,56.0,PASS,0.06,
+M_cvss,missing,synthetic,score=None and missing cvss,None; cvss,PASS,0,
+M_epss,missing,synthetic,score=None and missing epss,None; epss,PASS,0,
+M_cisa_kev,missing,synthetic,score=None and missing cisa_kev,None; kev,PASS,0,
+M_asset_criticality,missing,synthetic,score=None and missing asset_criticality,None; asset_criticality,PASS,0,
+M_exposure,missing,synthetic,score=None and missing exposure,None; exposure,PASS,0,
+M_operational_impact,missing,synthetic,score=None and missing operational_impact,None; operational_impact,PASS,0,
+S01,sensitivity,synthetic,delta 11.25,11.25,PASS,0,
+V_cvss,invalid,synthetic,score=None,None,PASS,0,
+V_epss,invalid,synthetic,score=None,None,PASS,0,
+V_asset_criticality,invalid,synthetic,score=None,None,PASS,0,
+D_01_Smoke_KEV_50,dataset,01_Smoke_KEV_50.xlsx,50,50,PASS,372.62,complete_scores=0; pending=50
+B_01_Smoke_KEV_50,bounds,01_Smoke_KEV_50.xlsx,"scores in [0,100]",True,PASS,0,
+D_02_Risk_Baseline_50,dataset,02_Risk_Baseline_50.xlsx,50,50,PASS,56.29,complete_scores=0; pending=50
+B_02_Risk_Baseline_50,bounds,02_Risk_Baseline_50.xlsx,"scores in [0,100]",True,PASS,0,
+D_03_RAG_Local_50,dataset,03_RAG_Local_50.xlsx,50,50,PASS,54.01,complete_scores=0; pending=50
+B_03_RAG_Local_50,bounds,03_RAG_Local_50.xlsx,"scores in [0,100]",True,PASS,0,
+D_04_RAG_Cloud_Controlled_50,dataset,04_RAG_Cloud_Controlled_50.xlsx,50,50,PASS,52.92,complete_scores=0; pending=50
+B_04_RAG_Cloud_Controlled_50,bounds,04_RAG_Cloud_Controlled_50.xlsx,"scores in [0,100]",True,PASS,0,
+D_05_Load_100_100,dataset,05_Load_100_100.xlsx,100,100,PASS,72.27,complete_scores=0; pending=100
+B_05_Load_100_100,bounds,05_Load_100_100.xlsx,"scores in [0,100]",True,PASS,0,
+D_06_Load_250_250,dataset,06_Load_250_250.xlsx,250,250,PASS,135.72,complete_scores=0; pending=250
+B_06_Load_250_250,bounds,06_Load_250_250.xlsx,"scores in [0,100]",True,PASS,0,
+D_07_Load_500_500,dataset,07_Load_500_500.xlsx,500,500,PASS,221.71,complete_scores=0; pending=500
+B_07_Load_500_500,bounds,07_Load_500_500.xlsx,"scores in [0,100]",True,PASS,0,
+D_08_Load_750_750,dataset,08_Load_750_750.xlsx,750,750,PASS,315.18,complete_scores=0; pending=750
+B_08_Load_750_750,bounds,08_Load_750_750.xlsx,"scores in [0,100]",True,PASS,0,
+D_09_Load_1000_1000,dataset,09_Load_1000_1000.xlsx,1000,1000,PASS,402.85,complete_scores=0; pending=1000
+B_09_Load_1000_1000,bounds,09_Load_1000_1000.xlsx,"scores in [0,100]",True,PASS,0,
+D_10_E2E_Full_V12_200,dataset,10_E2E_Full_V12_200.xlsx,200,200,PASS,102.7,complete_scores=0; pending=200
+B_10_E2E_Full_V12_200,bounds,10_E2E_Full_V12_200.xlsx,"scores in [0,100]",True,PASS,0,
+DET01,determinism,synthetic,same score,56.0 / 56.0,PASS,0,

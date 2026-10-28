@@ -1,0 +1,1352 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\Windows\system32> cd C:\EMCALI_Cyber_V13_3_2_EXP
+PS C:\EMCALI_Cyber_V13_3_2_EXP> python .\ejecutar_pruebas_v1332.py --help
+usage: ejecutar_pruebas_v1332.py [-h] --app-dir APP_DIR --datasets-dir DATASETS_DIR [--out OUT]
+
+options:
+  -h, --help            show this help message and exit
+  --app-dir APP_DIR
+  --datasets-dir DATASETS_DIR
+  --out OUT
+PS C:\EMCALI_Cyber_V13_3_2_EXP> cd C:\EMCALI_Cyber_V13_3_2_EXP
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Write-Host "`n=== VERSION PYTHON ==="
+
+=== VERSION PYTHON ===
+PS C:\EMCALI_Cyber_V13_3_2_EXP> python --version
+Python 3.14.7
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Write-Host "`n=== DIRECTORIO ACTUAL ==="
+
+=== DIRECTORIO ACTUAL ===
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Get-Location
+
+Path
+----
+C:\EMCALI_Cyber_V13_3_2_EXP
+
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Write-Host "`n=== EJECUTOR ==="
+
+=== EJECUTOR ===
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Test-Path .\ejecutar_pruebas_v1332.py
+True
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Write-Host "`n=== ARCHIVOS PRINCIPALES ==="
+
+=== ARCHIVOS PRINCIPALES ===
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Get-ChildItem -File | Select-Object Name,Length
+
+Name                                                      Length
+----                                                      ------
+app.py                                                      1675
+AUDITORIA_RELEASE.txt                                       1269
+CAMBIOS_V12_1_CORRECCION_VICTUS_GPU_OLLAMA.txt               836
+CAMBIOS_V12_ACELERACION_GPU_MODELOS_LIVIANOS.txt             967
+CAMBIOS_V13_1_GESTOR_MODELOS_CYBER.txt                       926
+CAMBIOS_V13_2_GESTOR_EXTENSIBLE.txt                          584
+CAMBIOS_V13_3.txt                                            562
+CAMBIOS_V13_3_1.txt                                         1312
+ejecutar_pruebas_v1332.py                                   3768
+ejecutar_pruebas_v1332_rds.py                               3768
+EMCALI_Cyber_V13_3_2_Resultados_Auditoria_Preliminar.xlsx   7149
+INICIAR_EMCALI_CYBER_V12.bat                                 556
+INICIAR_EMCALI_CYBER_V12_OLLAMA.bat                          309
+INICIAR_PORTABLE_V12_HP_VICTUS.bat                           335
+INSTALACION_V13_3.txt                                        848
+INTEGRACION_NVD_EPSS_V13_3_1.md                             1298
+MANIFEST_SHA256.txt                                         8024
+Modelfile_Foundation_Diagnostico                             447
+README.md                                                   1267
+README_V13_3_2_RIESGO.md                                    1485
+requirements.txt                                             135
+requirements_desktop.txt                                      37
+run_app.bat                                                  286
+run_app_con_ollama.bat                                       317
+run_streamlit.bat                                            286
+TESTS_V13_3.txt                                              710
+VERSION.txt                                                  121
+
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Write-Host "`n=== CARPETAS ==="
+
+=== CARPETAS ===
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Get-ChildItem -Directory | Select-Object Name
+
+Name
+----
+assets
+core
+EMCALI_Cyber20_Hibrido_Enterprise_V13_3_EXP_HP_Victus_RTX4050
+models
+pages
+
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Write-Host "`n=== DATASETS DISPONIBLES ==="
+
+=== DATASETS DISPONIBLES ===
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Get-ChildItem -Recurse -File -Include *.csv,*.xlsx,*.json |
+>>     Select-Object FullName,Length
+
+FullName                                                                              Length
+--------                                                                              ------
+C:\EMCALI_Cyber_V13_3_2_EXP\EMCALI_Cyber_V13_3_2_Resultados_Auditoria_Preliminar.xlsx   7149
+
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP> $datasets = "C:\EMCALI_Cyber_V12_Benchmark_V2_Completo\EMCALI_Cyber_V12_Benchmark_V2\datasets"
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Test-Path $datasets
+True
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Get-ChildItem $datasets -Filter "*.xlsx" |
+>>     Select-Object Name,Length
+
+Name                            Length
+----                            ------
+01_Smoke_KEV_50.xlsx             10503
+02_Risk_Baseline_50.xlsx         10514
+03_RAG_Local_50.xlsx             10516
+04_RAG_Cloud_Controlled_50.xlsx  10518
+05_Load_100_100.xlsx             16630
+06_Load_250_250.xlsx             35037
+07_Load_500_500.xlsx             65567
+08_Load_750_750.xlsx             96134
+09_Load_1000_1000.xlsx          126673
+10_E2E_Full_V12_200.xlsx         28934
+
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP> cd C:\EMCALI_Cyber_V13_3_2_EXP
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> python .\ejecutar_pruebas_v1332.py `
+>>     --app-dir "C:\EMCALI_Cyber_V13_3_2_EXP" `
+>>     --datasets-dir "C:\EMCALI_Cyber_V12_Benchmark_V2_Completo\EMCALI_Cyber_V12_Benchmark_V2\datasets" `
+>>     --out "C:\EMCALI_Cyber_V13_3_2_EXP\resultados_pruebas"
+Pruebas: 32 PASS: 32 FAIL: 0
+Resultados: C:\EMCALI_Cyber_V13_3_2_EXP\resultados_pruebas
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Get-ChildItem "C:\EMCALI_Cyber_V13_3_2_EXP\resultados_pruebas" -Recurse |
+>>     Select-Object FullName,Length
+
+FullName                                       Length
+--------                                       ------
+C:\EMCALI_Cyber_V13_3_2_EXP\resultados_pruebas   2792
+
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP> cd C:\EMCALI_Cyber_V13_3_2_EXP
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Get-Item .\resultados_pruebas |
+>>     Format-List FullName,PSIsContainer,Length
+
+
+FullName      : C:\EMCALI_Cyber_V13_3_2_EXP\resultados_pruebas
+PSIsContainer : False
+Length        : 2792
+
+
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Get-Content .\resultados_pruebas -TotalCount 25
+test_id,category,dataset,expected,actual,status,elapsed_ms,detail
+R01,unit,synthetic,score 56.00,56.0,PASS,0.06,
+M_cvss,missing,synthetic,score=None and missing cvss,None; cvss,PASS,0,
+M_epss,missing,synthetic,score=None and missing epss,None; epss,PASS,0,
+M_cisa_kev,missing,synthetic,score=None and missing cisa_kev,None; kev,PASS,0,
+M_asset_criticality,missing,synthetic,score=None and missing asset_criticality,None; asset_criticality,PASS,0,
+M_exposure,missing,synthetic,score=None and missing exposure,None; exposure,PASS,0,
+M_operational_impact,missing,synthetic,score=None and missing operational_impact,None; operational_impact,PASS,0,
+S01,sensitivity,synthetic,delta 11.25,11.25,PASS,0,
+V_cvss,invalid,synthetic,score=None,None,PASS,0,
+V_epss,invalid,synthetic,score=None,None,PASS,0,
+V_asset_criticality,invalid,synthetic,score=None,None,PASS,0,
+D_01_Smoke_KEV_50,dataset,01_Smoke_KEV_50.xlsx,50,50,PASS,372.62,complete_scores=0; pending=50
+B_01_Smoke_KEV_50,bounds,01_Smoke_KEV_50.xlsx,"scores in [0,100]",True,PASS,0,
+D_02_Risk_Baseline_50,dataset,02_Risk_Baseline_50.xlsx,50,50,PASS,56.29,complete_scores=0; pending=50
+B_02_Risk_Baseline_50,bounds,02_Risk_Baseline_50.xlsx,"scores in [0,100]",True,PASS,0,
+D_03_RAG_Local_50,dataset,03_RAG_Local_50.xlsx,50,50,PASS,54.01,complete_scores=0; pending=50
+B_03_RAG_Local_50,bounds,03_RAG_Local_50.xlsx,"scores in [0,100]",True,PASS,0,
+D_04_RAG_Cloud_Controlled_50,dataset,04_RAG_Cloud_Controlled_50.xlsx,50,50,PASS,52.92,complete_scores=0; pending=50
+B_04_RAG_Cloud_Controlled_50,bounds,04_RAG_Cloud_Controlled_50.xlsx,"scores in [0,100]",True,PASS,0,
+D_05_Load_100_100,dataset,05_Load_100_100.xlsx,100,100,PASS,72.27,complete_scores=0; pending=100
+B_05_Load_100_100,bounds,05_Load_100_100.xlsx,"scores in [0,100]",True,PASS,0,
+D_06_Load_250_250,dataset,06_Load_250_250.xlsx,250,250,PASS,135.72,complete_scores=0; pending=250
+B_06_Load_250_250,bounds,06_Load_250_250.xlsx,"scores in [0,100]",True,PASS,0,
+D_07_Load_500_500,dataset,07_Load_500_500.xlsx,500,500,PASS,221.71,complete_scores=0; pending=500
+PS C:\EMCALI_Cyber_V13_3_2_EXP> cd C:\EMCALI_Cyber_V13_3_2_EXP
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Copy-Item .\resultados_pruebas `
+>>     .\Resultados_Benchmark_V13_3_2.csv
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Import-Csv .\Resultados_Benchmark_V13_3_2.csv |
+>>     Group-Object category,status |
+>>     Select-Object Name,Count
+
+Name              Count
+----              -----
+unit, PASS            1
+missing, PASS         6
+sensitivity, PASS     1
+invalid, PASS         3
+dataset, PASS        10
+bounds, PASS         10
+determinism, PASS     1
+
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP> $datos = Import-Csv .\Resultados_Benchmark_V13_3_2.csv
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> $datos |
+>>     Where-Object { $_.detail -match "complete_scores=0" } |
+>>     Select-Object test_id,dataset,actual,detail |
+>>     Format-Table -AutoSize
+
+test_id                      dataset                         actual detail
+-------                      -------                         ------ ------
+D_01_Smoke_KEV_50            01_Smoke_KEV_50.xlsx            50     complete_scores=0; pending=50
+D_02_Risk_Baseline_50        02_Risk_Baseline_50.xlsx        50     complete_scores=0; pending=50
+D_03_RAG_Local_50            03_RAG_Local_50.xlsx            50     complete_scores=0; pending=50
+D_04_RAG_Cloud_Controlled_50 04_RAG_Cloud_Controlled_50.xlsx 50     complete_scores=0; pending=50
+D_05_Load_100_100            05_Load_100_100.xlsx            100    complete_scores=0; pending=100
+D_06_Load_250_250            06_Load_250_250.xlsx            250    complete_scores=0; pending=250
+D_07_Load_500_500            07_Load_500_500.xlsx            500    complete_scores=0; pending=500
+D_08_Load_750_750            08_Load_750_750.xlsx            750    complete_scores=0; pending=750
+D_09_Load_1000_1000          09_Load_1000_1000.xlsx          1000   complete_scores=0; pending=1000
+D_10_E2E_Full_V12_200        10_E2E_Full_V12_200.xlsx        200    complete_scores=0; pending=200
+
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Import-Csv .\Resultados_Benchmark_V13_3_2.csv |
+>>     Select-Object test_id,category,dataset,status,elapsed_ms,detail |
+>>     Format-Table -Wrap -AutoSize
+
+test_id                      category    dataset                         status elapsed_ms detail
+-------                      --------    -------                         ------ ---------- ------
+R01                          unit        synthetic                       PASS   0.06
+M_cvss                       missing     synthetic                       PASS   0
+M_epss                       missing     synthetic                       PASS   0
+M_cisa_kev                   missing     synthetic                       PASS   0
+M_asset_criticality          missing     synthetic                       PASS   0
+M_exposure                   missing     synthetic                       PASS   0
+M_operational_impact         missing     synthetic                       PASS   0
+S01                          sensitivity synthetic                       PASS   0
+V_cvss                       invalid     synthetic                       PASS   0
+V_epss                       invalid     synthetic                       PASS   0
+V_asset_criticality          invalid     synthetic                       PASS   0
+D_01_Smoke_KEV_50            dataset     01_Smoke_KEV_50.xlsx            PASS   372.62     complete_scores=0; pending=50
+B_01_Smoke_KEV_50            bounds      01_Smoke_KEV_50.xlsx            PASS   0
+D_02_Risk_Baseline_50        dataset     02_Risk_Baseline_50.xlsx        PASS   56.29      complete_scores=0; pending=50
+B_02_Risk_Baseline_50        bounds      02_Risk_Baseline_50.xlsx        PASS   0
+D_03_RAG_Local_50            dataset     03_RAG_Local_50.xlsx            PASS   54.01      complete_scores=0; pending=50
+B_03_RAG_Local_50            bounds      03_RAG_Local_50.xlsx            PASS   0
+D_04_RAG_Cloud_Controlled_50 dataset     04_RAG_Cloud_Controlled_50.xlsx PASS   52.92      complete_scores=0; pending=50
+B_04_RAG_Cloud_Controlled_50 bounds      04_RAG_Cloud_Controlled_50.xlsx PASS   0
+D_05_Load_100_100            dataset     05_Load_100_100.xlsx            PASS   72.27      complete_scores=0; pending=100
+B_05_Load_100_100            bounds      05_Load_100_100.xlsx            PASS   0
+D_06_Load_250_250            dataset     06_Load_250_250.xlsx            PASS   135.72     complete_scores=0; pending=250
+B_06_Load_250_250            bounds      06_Load_250_250.xlsx            PASS   0
+D_07_Load_500_500            dataset     07_Load_500_500.xlsx            PASS   221.71     complete_scores=0; pending=500
+B_07_Load_500_500            bounds      07_Load_500_500.xlsx            PASS   0
+D_08_Load_750_750            dataset     08_Load_750_750.xlsx            PASS   315.18     complete_scores=0; pending=750
+B_08_Load_750_750            bounds      08_Load_750_750.xlsx            PASS   0
+D_09_Load_1000_1000          dataset     09_Load_1000_1000.xlsx          PASS   402.85     complete_scores=0; pending=1000
+B_09_Load_1000_1000          bounds      09_Load_1000_1000.xlsx          PASS   0
+D_10_E2E_Full_V12_200        dataset     10_E2E_Full_V12_200.xlsx        PASS   102.7      complete_scores=0; pending=200
+B_10_E2E_Full_V12_200        bounds      10_E2E_Full_V12_200.xlsx        PASS   0
+DET01                        determinism synthetic                       PASS   0
+
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP> cd C:\EMCALI_Cyber_V13_3_2_EXP
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> python .\ejecutar_bateria2_v13.py `
+>>   --app-dir "C:\EMCALI_Cyber_V13_3_2_EXP" `
+>>   --datasets-dir "C:\EMCALI_Cyber_V12_Benchmark_V2_Completo\EMCALI_Cyber_V12_Benchmark_V2\datasets" `
+>>   --out "C:\EMCALI_Cyber_V13_3_2_EXP\bateria2_evidencias"
+BATERIA 2: {'PASS': 29, 'FAIL': 0, 'PENDING': 18}
+Evidencias: C:\EMCALI_Cyber_V13_3_2_EXP\bateria2_evidencias
+NOTA: PENDING no equivale a PASS; resultados de referencia no equivalen a pruebas del motor real.
+PS C:\EMCALI_Cyber_V13_3_2_EXP> DIR
+
+
+    Directorio: C:\EMCALI_Cyber_V13_3_2_EXP
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        09/10/2026     21:07                assets
+d-----        24/10/2026     18:31                bateria2_evidencias
+d-----        09/10/2026     21:08                core
+d-----        09/10/2026     21:07                EMCALI_Cyber20_Hibrido_Enterprise_V13_3_EXP_HP_Victus_RTX4050
+d-----        24/10/2026     17:46                EMCALI_Cyber_V12_Benchmark_V2_Completo
+d-----        09/10/2026     21:07                models
+d-----        09/10/2026     21:08                pages
+-a----        09/10/2026     23:14           1675 app.py
+-a----        09/10/2026     23:14           1269 AUDITORIA_RELEASE.txt
+-a----        09/10/2026     23:14            836 CAMBIOS_V12_1_CORRECCION_VICTUS_GPU_OLLAMA.txt
+-a----        09/10/2026     23:14            967 CAMBIOS_V12_ACELERACION_GPU_MODELOS_LIVIANOS.txt
+-a----        09/10/2026     23:14            926 CAMBIOS_V13_1_GESTOR_MODELOS_CYBER.txt
+-a----        09/10/2026     23:14            584 CAMBIOS_V13_2_GESTOR_EXTENSIBLE.txt
+-a----        09/10/2026     23:14            562 CAMBIOS_V13_3.txt
+-a----        09/10/2026     23:14           1312 CAMBIOS_V13_3_1.txt
+-a----        24/10/2026     18:25          10895 ejecutar_bateria2_v13.py
+-a----        09/10/2026     21:38           3768 ejecutar_pruebas_v1332.py
+-a----        24/10/2026     17:32           3768 ejecutar_pruebas_v1332_rds.py
+-a----        09/10/2026     21:36           7149 EMCALI_Cyber_V13_3_2_Resultados_Auditoria_Preliminar.xlsx
+-a----        09/10/2026     23:14            556 INICIAR_EMCALI_CYBER_V12.bat
+-a----        09/10/2026     23:14            309 INICIAR_EMCALI_CYBER_V12_OLLAMA.bat
+-a----        09/10/2026     23:14            335 INICIAR_PORTABLE_V12_HP_VICTUS.bat
+-a----        09/10/2026     23:14            848 INSTALACION_V13_3.txt
+-a----        10/10/2026      1:34           1298 INTEGRACION_NVD_EPSS_V13_3_1.md
+-a----        09/10/2026     23:14           8024 MANIFEST_SHA256.txt
+-a----        09/10/2026     23:14            447 Modelfile_Foundation_Diagnostico
+-a----        09/10/2026     23:14           1267 README.md
+-a----        10/10/2026      2:02           1485 README_V13_3_2_RIESGO.md
+-a----        09/10/2026     23:14            135 requirements.txt
+-a----        09/10/2026     23:14             37 requirements_desktop.txt
+-a----        24/10/2026     17:49           2792 Resultados_Benchmark_V13_3_2.csv
+-a----        24/10/2026     17:49           2792 resultados_pruebas
+-a----        09/10/2026     23:14            286 run_app.bat
+-a----        09/10/2026     23:14            317 run_app_con_ollama.bat
+-a----        09/10/2026     23:14            286 run_streamlit.bat
+-a----        09/10/2026     23:14            710 TESTS_V13_3.txt
+-a----        09/10/2026     23:14            121 VERSION.txt
+
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Compress-Archive `
+>>   -Path "C:\EMCALI_Cyber_V13_3_2_EXP\*" `
+>>   -DestinationPath "C:\EMCALI_Cyber_V13_3_2_AUDITORIA.zip"
+New-Object : Excepción al llamar a ".ctor" con los argumentos "2": "Acceso denegado a la ruta de acceso 'C:\EMCALI_Cyber_V13_3_2_AUDITORIA.zip'."
+En C:\Windows\system32\WindowsPowerShell\v1.0\Modules\Microsoft.PowerShell.Archive\Microsoft.PowerShell.Archive.psm1: 739 Carácter: 30
++ ... ileStream = New-Object -TypeName System.IO.FileStream -ArgumentList $ ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [New-Object], MethodInvocationException
+    + FullyQualifiedErrorId : ConstructorInvokedThrowException,Microsoft.PowerShell.Commands.NewObjectCommand
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP> cd C:\EMCALI_Cyber_V13_3_2_PATCH_EXP
+cd : No se encuentra la ruta de acceso 'C:\EMCALI_Cyber_V13_3_2_PATCH_EXP' porque no existe.
+En línea: 1 Carácter: 1
++ cd C:\EMCALI_Cyber_V13_3_2_PATCH_EXP
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\EMCALI_Cyber_V13_3_2_PATCH_EXP:String) [Set-Location], ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> python .\ejecutar_bateria2_corregida_v13.py `
+>>   --app-dir "C:\EMCALI_Cyber_V13_3_2_PATCH_EXP" `
+>>   --datasets-dir "C:\EMCALI_Cyber_V12_Benchmark_V2_Completo\EMCALI_Cyber_V12_Benchmark_V2\datasets" `
+>>   --out "C:\EMCALI_Cyber_V13_3_2_PATCH_EXP\bateria2_corregida"
+BATERIA 2 CORREGIDA: {'PASS': 34, 'FAIL': 0, 'PENDING': 5}
+Evidencias: C:\EMCALI_Cyber_V13_3_2_PATCH_EXP\bateria2_corregida
+PS C:\EMCALI_Cyber_V13_3_2_EXP> cd C:\EMCALI_Cyber_V13_3_2_EXP
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> $evidencias = "C:\EMCALI_Cyber_V13_3_2_PATCH_EXP\bateria2_corregida"
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Get-ChildItem $evidencias -Recurse -File |
+>>     Select-Object Name, Length, FullName
+
+Name                              Length FullName
+----                              ------ --------
+bateria2_corregida_manifest.json     600 C:\EMCALI_Cyber_V13_3_2_PATCH_EXP\bateria2_corregida\bateria2_corregida_manifest.json
+bateria2_corregida_resultados.csv   5678 C:\EMCALI_Cyber_V13_3_2_PATCH_EXP\bateria2_corregida\bateria2_corregida_resultados.csv
+cobertura_datasets.csv              1140 C:\EMCALI_Cyber_V13_3_2_PATCH_EXP\bateria2_corregida\cobertura_datasets.csv
+evidencia_riesgo_por_hallazgo.csv 462132 C:\EMCALI_Cyber_V13_3_2_PATCH_EXP\bateria2_corregida\evidencia_riesgo_por_hallazgo.csv
+persistence_probe_corrected.json     103 C:\EMCALI_Cyber_V13_3_2_PATCH_EXP\bateria2_corregida\persistence_probe_corrected.json
+
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Get-ChildItem $evidencias -Recurse -Filter *.csv |
+>>     ForEach-Object {
+>>         Write-Host "`nARCHIVO:" $_.Name
+>>         Import-Csv $_.FullName |
+>>             Where-Object { $_.status -eq "PENDING" } |
+>>             Format-Table -AutoSize
+>>     }
+
+ARCHIVO: bateria2_corregida_resultados.csv
+
+test_id           category    status  detail
+-------           --------    ------  ------
+PERSIST_STREAMLIT persistence PENDING No hay persistencia de hallazgos entre reinicios implementada/verificada; requiere prueba real de reinicio de serv...
+NVD_LIVE          enrichment  PENDING No se consultaron fuentes externas; los metadatos del benchmark no prueban consulta NVD en vivo.
+EPSS_LIVE         enrichment  PENDING No se consultaron fuentes externas; ejecutar verificacion independiente con acceso a Internet.
+GPU_INFERENCE     performance PENDING No se midio inferencia real de Ollama ni uso GPU; requiere 30 ejecuciones y telemetria.
+STREAMLIT_E2E     performance PENDING No se midio rendimiento UI real, ni persistencia entre sesiones.
+
+
+
+ARCHIVO: cobertura_datasets.csv
+
+ARCHIVO: evidencia_riesgo_por_hallazgo.csv
+PS C:\EMCALI_Cyber_V13_3_2_EXP> $dir = "C:\EMCALI_Cyber_V13_3_2_PATCH_EXP\bateria2_corregida"
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> $riesgos = Import-Csv "$dir\evidencia_riesgo_por_hallazgo.csv"
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Write-Host "`nTOTAL HALLAZGOS:" $riesgos.Count
+
+TOTAL HALLAZGOS: 3000
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Write-Host "`nCOLUMNAS:"
+
+COLUMNAS:
+PS C:\EMCALI_Cyber_V13_3_2_EXP> $riesgos[0].PSObject.Properties.Name
+dataset_file
+finding_id
+cve
+cvss
+epss
+cisa_kev
+asset_criticality
+exposure
+operational_impact
+priority_score
+risk_min
+risk_max
+risk_missing_factors
+cvss_version
+epss_date
+provenance_status
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Write-Host "`nPRIMEROS REGISTROS:"
+
+PRIMEROS REGISTROS:
+PS C:\EMCALI_Cyber_V13_3_2_EXP> $riesgos |
+>>     Select-Object -First 5 |
+>>     Format-List
+
+
+dataset_file         : 01_Smoke_KEV_50.xlsx
+finding_id           : N-00001
+cve                  : CVE-2026-86950
+cvss                 :
+epss                 :
+cisa_kev             : True
+asset_criticality    : Low
+exposure             : DMZ
+operational_impact   : Low
+priority_score       :
+risk_min             : 33.75
+risk_max             : 78.75
+risk_missing_factors : cvss, epss
+cvss_version         :
+epss_date            :
+provenance_status    : OFFICIAL_CVE_KEV_IDENTITY / CVSS_EPSS_PENDING_REFRESH
+
+dataset_file         : 01_Smoke_KEV_50.xlsx
+finding_id           : N-00002
+cve                  : CVE-2026-88772
+cvss                 :
+epss                 :
+cisa_kev             : True
+asset_criticality    : Low
+exposure             : Internet
+operational_impact   : Low
+priority_score       :
+risk_min             : 36.25
+risk_max             : 81.25
+risk_missing_factors : cvss, epss
+cvss_version         :
+epss_date            :
+provenance_status    : OFFICIAL_CVE_KEV_IDENTITY / CVSS_EPSS_PENDING_REFRESH
+
+dataset_file         : 01_Smoke_KEV_50.xlsx
+finding_id           : N-00003
+cve                  : CVE-2026-88771
+cvss                 :
+epss                 :
+cisa_kev             : True
+asset_criticality    : Medium
+exposure             : Internet
+operational_impact   : Low
+priority_score       :
+risk_min             : 40.0
+risk_max             : 85.0
+risk_missing_factors : cvss, epss
+cvss_version         :
+epss_date            :
+provenance_status    : OFFICIAL_CVE_KEV_IDENTITY / CVSS_EPSS_PENDING_REFRESH
+
+dataset_file         : 01_Smoke_KEV_50.xlsx
+finding_id           : N-00004
+cve                  : CVE-2026-67279
+cvss                 :
+epss                 :
+cisa_kev             : True
+asset_criticality    : High
+exposure             : DMZ
+operational_impact   : Medium
+priority_score       :
+risk_min             : 43.75
+risk_max             : 88.75
+risk_missing_factors : cvss, epss
+cvss_version         :
+epss_date            :
+provenance_status    : OFFICIAL_CVE_KEV_IDENTITY / CVSS_EPSS_PENDING_REFRESH
+
+dataset_file         : 01_Smoke_KEV_50.xlsx
+finding_id           : N-00005
+cve                  : CVE-2026-65660
+cvss                 :
+epss                 :
+cisa_kev             : True
+asset_criticality    : Low
+exposure             : Internet
+operational_impact   : Critical
+priority_score       :
+risk_min             : 43.75
+risk_max             : 88.75
+risk_missing_factors : cvss, epss
+cvss_version         :
+epss_date            :
+provenance_status    : OFFICIAL_CVE_KEV_IDENTITY / CVSS_EPSS_PENDING_REFRESH
+
+
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Write-Host "`nPERSISTENCIA:"
+
+PERSISTENCIA:
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Get-Content "$dir\persistence_probe_connected.json" -Raw
+Get-Content : No se encuentra la ruta de acceso 'C:\EMCALI_Cyber_V13_3_2_PATCH_EXP\bateria2_corregida\persistence_probe_connected.json' porque no existe.
+En línea: 1 Carácter: 1
++ Get-Content "$dir\persistence_probe_connected.json" -Raw
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\EMCALI_Cyber..._connected.json:String) [Get-Content], ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetContentCommand
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Write-Host "`nMANIFIESTO:"
+
+MANIFIESTO:
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Get-Content "$dir\bateria2_corregida_manifest.json" -Raw
+{
+  "run_utc": "2026-10-25T00:05:51.711773+00:00",
+  "app_dir": "C:\\EMCALI_Cyber_V13_3_2_PATCH_EXP",
+  "datasets_dir": "C:\\EMCALI_Cyber_V12_Benchmark_V2_Completo\\EMCALI_Cyber_V12_Benchmark_V2\\datasets",
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "counts": {
+    "PASS": 34,
+    "FAIL": 0,
+    "PENDING": 5
+  },
+  "results_sha256": "ee27e98fa17c4b7367b7fc995d2a2da5d8dd9eed111bb03129ec3d7ea01fb9ab",
+  "method": "Motor real; benchmarks pueden contener CVSS/EPSS ausentes; no imputar."
+}
+PS C:\EMCALI_Cyber_V13_3_2_EXP> $dir = "C:\EMCALI_Cyber_V13_3_2_PATCH_EXP\bateria2_corregida"
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Get-ChildItem $dir -Filter "*persist*.json" |
+>>     Select-Object Name,FullName,Length
+
+Name                             FullName                                                                              Length
+----                             --------                                                                              ------
+persistence_probe_corrected.json C:\EMCALI_Cyber_V13_3_2_PATCH_EXP\bateria2_corregida\persistence_probe_corrected.json    103
+
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Get-ChildItem $dir -Filter "*persist*.json" |
+>>     ForEach-Object {
+>>         Write-Host "`nARCHIVO:" $_.Name
+>>         Get-Content $_.FullName -Raw
+>>     }
+
+ARCHIVO: persistence_probe_corrected.json
+{"sentinel": "EMCALI-RISK", "utc": "2026-10-25T00:05:51.696573+00:00", "version": "V13.3.2-corrective"}
+PS C:\EMCALI_Cyber_V13_3_2_EXP> $dir = "C:\EMCALI_Cyber_V13_3_2_PATCH_EXP\bateria2_corregida"
+PS C:\EMCALI_Cyber_V13_3_2_EXP> $r = Import-Csv "$dir\evidencia_riesgo_por_hallazgo.csv"
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Write-Host "`n=== COBERTURA DE RIESGO ==="
+
+=== COBERTURA DE RIESGO ===
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> [PSCustomObject]@{
+>>     Total = $r.Count
+>>     Con_CVSS = @($r | Where-Object { $_.cvss -ne "" }).Count
+>>     Con_EPSS = @($r | Where-Object { $_.epss -ne "" }).Count
+>>     Con_Score_Final = @($r | Where-Object { $_.priority_score -ne "" }).Count
+>>     Con_Intervalos = @($r | Where-Object {
+>>         $_.risk_min -ne "" -and $_.risk_max -ne ""
+>>     }).Count
+>> } | Format-List
+
+
+Total           : 3000
+Con_CVSS        : 0
+Con_EPSS        : 0
+Con_Score_Final : 0
+Con_Intervalos  : 3000
+
+
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Write-Host "`n=== DISTRIBUCION POR DATASET ==="
+
+=== DISTRIBUCION POR DATASET ===
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> $r |
+>>     Group-Object dataset_file |
+>>     Select-Object Name,Count |
+>>     Format-Table -AutoSize
+
+Name                            Count
+----                            -----
+01_Smoke_KEV_50.xlsx               50
+02_Risk_Baseline_50.xlsx           50
+03_RAG_Local_50.xlsx               50
+04_RAG_Cloud_Controlled_50.xlsx    50
+05_Load_100_100.xlsx              100
+06_Load_250_250.xlsx              250
+07_Load_500_500.xlsx              500
+08_Load_750_750.xlsx              750
+09_Load_1000_1000.xlsx           1000
+10_E2E_Full_V12_200.xlsx          200
+
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP> cd C:\EMCALI_Cyber_V13_3_2_EXP
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Write-Host "`n=== MOTOR DE RIESGO ==="
+
+=== MOTOR DE RIESGO ===
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Get-ChildItem .\core -Recurse -Filter *.py |
+>>     Select-String -Pattern "priority_score|risk_min|risk_max|cvss|epss" |
+>>     Select-Object Path,LineNumber,Line |
+>>     Format-Table -Wrap
+
+Path                                                         LineNumber Line
+----                                                         ---------- ----
+C:\EMCALI_Cyber_V13_3_2_EXP\core\analysis.py                         47 def compute_priority_score(row: pd.Series) -> float | None:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\analysis.py                         82     return f"{system_prompt_template}\n\nREGLAS DE CALIDAD: CVSS/EPSS no
+                                                                        disponibles no equivalen a cero; no inventes datos. Si hay versiones corregidas en
+                                                                        NVD, no afirmes que no existe parche. Usa solo documentos RAG pertinentes al
+                                                                        CVE/producto y marca incertidumbres. Un servicio no clasificado NO significa que
+                                                                        no sea crítico. No asegures que hay parche ni recomiendes uno concreto sin
+                                                                        verificar disponibilidad y versión afectada en fuentes oficiales. Distingue hechos
+                                                                        documentados de hipótesis. No afirmes que la validación de la remediación ya se
+                                                                        completó.\n\n\n\nSolicitud del analista:\n{user_query}\n\nHallazgo:\n- ID:
+                                                                        {row.get('finding_id')}\n- Fuente: {row.get('source')}\n- Activo:
+                                                                        {row.get('asset')}\n- IP: {row.get('ip')}\n- Sistema operativo: {row.get('os')}\n-
+                                                                        Severidad: {row.get('severity')}\n- CVSS: {'No disponible' if
+                                                                        pd.isna(row.get('cvss')) else row.get('cvss')}\n- CVE: {row.get('cve')}\n- Título:
+                                                                        {row.get('title')}\n- Estado: {row.get('status')}\n- Explotabilidad:
+                                                                        {row.get('exploitability')}\n- Servicio de negocio:
+                                                                        {row.get('business_service')}\n- Parche disponible: {'Sin verificar' if
+                                                                        row.get('patch_available') is None else row.get('patch_available')}\n-
+                                                                        Recomendación base: {row.get('recommendation')}\n\nEvidencia recuperada por
+                                                                        RAG:\n{evidence_block}\n\n{nvd_block}\n\nResponde con esta estructura:\n1. Resumen
+                                                                        ejecutivo\n2. Impacto técnico\n3. Impacto de negocio\n4. Priorización\n5. Plan de
+                                                                        remediación defensiva\n6. Validaciones posteriores"
+C:\EMCALI_Cyber_V13_3_2_EXP\core\analysis.py                        104     summary = f"Hallazgo {row['finding_id']} en {row['asset']}: {impact}. CVSS:
+                                                                        {'no disponible' if score is None else row.get('cvss')}. Requiere revisión del
+                                                                        analista."
+C:\EMCALI_Cyber_V13_3_2_EXP\core\analysis.py                        105     result = {'backend_used': settings['backend'], 'model_name':
+                                                                        settings['model_name'], 'priority_score': score, 'business_impact': impact,
+                                                                        'executive_summary': summary, 'recommended_actions': [row['recommendation'],
+                                                                        'Confirmar ventana de cambio y responsable técnico.', 'Ejecutar reescaneo
+                                                                        posterior y cerrar evidencia en reporte.'], 'retrieved_evidence': evidence,
+                                                                        'validated_output': False, 'risk_assessment': risk, 'excluded_rag_documents':
+                                                                        excluded_docs, 'quality_validation': None, 'llm_response': None, 'llm_error':
+                                                                        None, 'prompt_used': None, 'external_context': None, 'elapsed_sec': None,
+                                                                        'fallback_used': None}
+C:\EMCALI_Cyber_V13_3_2_EXP\core\analysis.py                        165     work['likelihood'] = pd.to_numeric(work.get('epss'), errors='coerce') * 100
+C:\EMCALI_Cyber_V13_3_2_EXP\core\analysis.py                        166     work['impact_score'] = pd.to_numeric(work.get('cvss'), errors='coerce') * 10
+C:\EMCALI_Cyber_V13_3_2_EXP\core\analysis.py                        175     top = work.sort_values('priority_score', ascending=False).head(3)
+C:\EMCALI_Cyber_V13_3_2_EXP\core\analysis.py                        178         lines.append(f"- {row['finding_id']} | {row['asset']} | {row['title']} |
+                                                                        Score {row['priority_score']} | Impacto {row['impact']}")
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                25     cvss = pd.to_numeric(data.get('cvss', pd.Series(dtype=float)), errors='coerce')
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                26     epss = pd.to_numeric(data.get('epss', pd.Series(dtype=float)), errors='coerce')
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                28     source = data.get('cvss_source', pd.Series(index=data.index, dtype='object'))
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                29     date = data.get('epss_date', pd.Series(index=data.index, dtype='object'))
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                31             'cvss_with_source': int((cvss.between(0,10) & source.notna()).sum()),
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                32             'epss_with_date': int((epss.between(0,1) & date.notna()).sum())}
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                38     if 'nvd_status' not in enriched.columns or 'epss_date' not in enriched.columns:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                39         raise ValueError('Faltan metadatos de NVD/EPSS. Importe el archivo
+                                                                        enriquecido, no el benchmark original.')
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                48     for field in ['cvss', 'epss', 'epss_percentile']:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                52     metadata = ['cvss_version','cvss_vector','cvss_source','cvss_severity',
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                53                 'epss_date','nvd_status','nvd_url','nvd_published','nvd_modified',
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                54                 'enriched_at','nvd_error','epss_error']
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                60     matched = cvss_verified = epss_verified = 0
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                68         cvss = _numeric(rec.get('cvss'), 0, 10)
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                69         epss = _numeric(rec.get('epss'), 0, 1)
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                70         cvss_source = rec.get('cvss_source')
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                71         epss_date = rec.get('epss_date')
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                72         nvd_ok = nvd_status not in ('', 'nan', 'none', 'query_error', 'not_found')
+                                                                        and pd.notna(cvss_source)
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                73         epss_ok = pd.notna(epss_date) and str(epss_date).lower() not in ('',
+                                                                        'nan', 'none') and pd.isna(rec.get('epss_error'))
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                74         if cvss is not None and nvd_ok:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                75             result.at[idx, 'cvss'] = cvss
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                76             cvss_verified += 1
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                78                 result.at[idx, 'severity'] = ('Critical' if cvss >= 9 else 'High'
+                                                                        if cvss >= 7 else 'Medium' if cvss >= 4 else 'Low')
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                79         if epss is not None and epss_ok:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                80             result.at[idx, 'epss'] = epss
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                81             epss_verified += 1
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                82             percentile = _numeric(rec.get('epss_percentile'), 0, 1)
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                84                 result.at[idx, 'epss_percentile'] = percentile
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                91             if kev or (epss is not None and epss_ok and epss >= .7) or (cvss is
+                                                                        not None and nvd_ok and cvss >= 9):
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                93             elif (epss is not None and epss_ok and epss >= .2) or (cvss is not
+                                                                        None and nvd_ok and cvss >= 6):
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py                95             elif epss_ok or nvd_ok:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py               100             if cvss is not None and nvd_ok:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py               101                 parts = [f for f in parts if f != 'CVSS no disponible']
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py               102             if epss is not None and epss_ok:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py               103                 parts = [f for f in parts if f != 'EPSS no disponible']
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment_bridge.py               106                'cvss_verified': cvss_verified, 'epss_verified': epss_verified,
+C:\EMCALI_Cyber_V13_3_2_EXP\core\llm_metrics.py                     132 def _epss_correlation(findings: pd.DataFrame) -> tuple[float, str]:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\llm_metrics.py                     135     epss_col = _first_col(findings, ["epss", "epss_score", "probability",
+                                                                        "epss_probability"])
+C:\EMCALI_Cyber_V13_3_2_EXP\core\llm_metrics.py                     136     priority_col = _first_col(findings, ["priority_score", "llm_priority_score",
+                                                                        "risk_score"])
+C:\EMCALI_Cyber_V13_3_2_EXP\core\llm_metrics.py                     137     if epss_col and priority_col:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\llm_metrics.py                     138         tmp = findings[[epss_col, priority_col]].apply(pd.to_numeric,
+                                                                        errors="coerce").dropna()
+C:\EMCALI_Cyber_V13_3_2_EXP\core\llm_metrics.py                     140             return round(float(tmp[epss_col].corr(tmp[priority_col],
+                                                                        method="spearman")), 4), "REAL: Spearman EPSS vs prioridad"
+C:\EMCALI_Cyber_V13_3_2_EXP\core\llm_metrics.py                     141     return 0.0, "SIN EPSS/priority_score"
+C:\EMCALI_Cyber_V13_3_2_EXP\core\llm_metrics.py                     227     epss_corr, epss_src = _epss_correlation(findings)
+C:\EMCALI_Cyber_V13_3_2_EXP\core\llm_metrics.py                     244         {"categoria": "Priorización", "metrica": "EPSS Correlation", "formula":
+                                                                        "Spearman(EPSS, prioridad LLM)", "valor": epss_corr, "unidad": "rho", "numerador":
+                                                                        "corr", "denominador": "N pares", "fuente": epss_src},
+C:\EMCALI_Cyber_V13_3_2_EXP\core\llm_runtime.py                     132         "Recomendación: validar criticidad, priorizar por CVSS/servicio afectado, "
+C:\EMCALI_Cyber_V13_3_2_EXP\core\model_manager.py                   145     common='''\nSYSTEM """Eres el motor local de análisis defensivo de EMCALI
+                                                                        Cyber 2.0 Híbrido. Analiza vulnerabilidades y remediaciones usando la evidencia
+                                                                        suministrada y el contexto RAG. No inventes CVE, CVSS, EPSS ni CISA KEV. Distingue
+                                                                        evidencia recuperada de inferencias del modelo."""\nPARAMETER temperature
+                                                                        0.2\nPARAMETER top_p 0.9\nPARAMETER num_ctx 4096\n'''
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                        7     "finding_id", "source", "asset", "ip", "os", "severity", "cvss", "cve",
+                                                                        "title",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                        9     "epss", "epss_percentile", "cisa_kev", "asset_criticality", "exposure",
+                                                                        "operational_impact", "published_date", "modified_date", "raw_source_type",
+                                                                        "data_quality_flags"
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                       23     "basescore": "cvss",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                       24     "cvssscore": "cvss",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                       25     "cvss_v3": "cvss",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                       26     "cvss_v3_score": "cvss",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                       27     "cvssv3": "cvss",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                       28     "cvss_v31": "cvss",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                       29     "cvss_v2": "cvss_v2",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                       30     "base_score": "cvss",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                       31     "epss_score": "epss",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                       32     "cvss_official": "cvss",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                       33     "epss_official": "epss",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                       34     "epsspercentile": "epss_percentile",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                       35     "percentile": "epss_percentile",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      105 def _severity_from_cvss(cvss: float) -> str:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      106     if pd.isna(cvss):
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      108     if cvss >= 9.0:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      110     if cvss >= 7.0:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      112     if cvss >= 4.0:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      117 def _exploitability_from_signals(cvss: float, epss: float, cisa_kev: bool) -> str:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      118     if cisa_kev or (pd.notna(epss) and epss >= 0.7) or (pd.notna(cvss) and cvss >=
+                                                                        9.0):
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      120     if (pd.notna(epss) and epss >= 0.2) or (pd.notna(cvss) and cvss >= 6.0):
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      137     if "cve_cisa_epss_enriched_dataset" in lower_name or {"epss",
+                                                                        "cisa_kev"}.issubset(cols):
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      138         notes.append("Se detectó formato enriquecido NVD + CISA KEV + EPSS.")
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      139         return "Kaggle:NVD+CISA+EPSS", notes
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      146     if {"plugin_id", "cvss"}.intersection(cols) or "tenable" in lower_name or
+                                                                        "nessus" in lower_name:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      156         cvss = _safe_float(_pick_first(row, ["cvss", "cvss_v31", "cvss_v3",
+                                                                        "cvss_v2", "cvss_nvd"], None), float("nan"))
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      157         epss = _safe_float(_pick_first(row, ["epss", "epss_nvd"], None),
+                                                                        float("nan"))
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      158         epss_percentile = _safe_float(_pick_first(row, ["epss_percentile"], None),
+                                                                        float("nan"))
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      161         severity_value = _pick_first(row, ["severity", "base_severity",
+                                                                        "cvss_v3_severity", "cvss_v31_severity"])
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      165             severity = _severity_from_cvss(cvss)
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      174             exploitability = _exploitability_from_signals(cvss, epss, cisa_kev)
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      176             exploitability = _exploitability_from_signals(cvss, epss, cisa_kev)
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      185             "cvss": cvss,
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      194             "epss": epss,
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      195             "epss_percentile": epss_percentile,
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      203             "data_quality_flags": "; ".join((["CVSS no disponible"] if
+                                                                        pd.isna(cvss) else []) + (["EPSS no disponible"] if pd.isna(epss) else []) +
+                                                                        (["Parche sin verificar"] if _pick_first(row, ["patch_available"]) is None else
+                                                                        [])),
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      210             normalized[col] = float("nan") if col in {"cvss", "epss",
+                                                                        "epss_percentile"} else (None if col == "patch_available" else (None if col in
+                                                                        {"cisa_kev", "asset_criticality", "exposure", "operational_impact"} else ""))
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      212     provenance = [c for c in ("cvss_version", "cvss_vector", "epss_date",
+                                                                        "nvd_url", "epss_source", "provenance_status", "kev_date", "run_group") if c in
+                                                                        df.columns]
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      230             "cvss": vuln.get("cvss_v3_score"),
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      239             "epss": float("nan"),
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      240             "epss_percentile": float("nan"),
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      275     if "severity" not in raw_df.columns and "cvss" in normalized.columns:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      276         notes.append("La severidad no venía explícita; se calculó automáticamente
+                                                                        a partir de CVSS.")
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      277     if "epss" in cleaned.columns:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\normalizer.py                      278         notes.append("Se conservó EPSS como señal de explotabilidad.")
+C:\EMCALI_Cyber_V13_3_2_EXP\core\quality_v133.py                     19     cvss = numeric(row.get("cvss"))
+C:\EMCALI_Cyber_V13_3_2_EXP\core\quality_v133.py                     20     epss = numeric(row.get("epss"))
+C:\EMCALI_Cyber_V13_3_2_EXP\core\quality_v133.py                     27     elif cvss is None:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\quality_v133.py                     28         band = "Pendiente de evaluación (CVSS desconocido)"
+C:\EMCALI_Cyber_V13_3_2_EXP\core\quality_v133.py                     29     elif cvss >= 9:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\quality_v133.py                     31     elif cvss >= 7:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\quality_v133.py                     33     elif cvss >= 4:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\quality_v133.py                     40             "cvss_missing": cvss is None, "epss_missing": epss is None,
+C:\EMCALI_Cyber_V13_3_2_EXP\core\quality_v133.py                     67     if risk["cvss_missing"]: flags.append("CVSS oficial no disponible")
+C:\EMCALI_Cyber_V13_3_2_EXP\core\risk_engine_v1332.py                 4 WEIGHTS = {'cvss': .25, 'epss': .20, 'kev': .20, 'asset_criticality': .15,
+                                                                        'exposure': .10, 'operational_impact': .10}
+C:\EMCALI_Cyber_V13_3_2_EXP\core\risk_engine_v1332.py                23     cvss=number(row.get('cvss'),0,10)
+C:\EMCALI_Cyber_V13_3_2_EXP\core\risk_engine_v1332.py                24     epss=number(row.get('epss'),0,1)
+C:\EMCALI_Cyber_V13_3_2_EXP\core\risk_engine_v1332.py                28     values={'cvss':cvss*10 if cvss is not None else None,
+C:\EMCALI_Cyber_V13_3_2_EXP\core\risk_engine_v1332.py                29             'epss':epss*100 if epss is not None else None,
+C:\EMCALI_Cyber_V13_3_2_EXP\core\risk_engine_v1332.py                44             'risk_min':lower,'risk_max':upper,'missing_factors':', '.join(missing),
+C:\EMCALI_Cyber_V13_3_2_EXP\core\risk_engine_v1332.py                50         for col in ('priority_score','risk_band_v1332','risk_coverage_pct','risk_mi
+                                                                        n','risk_max','risk_missing_factors'):
+C:\EMCALI_Cyber_V13_3_2_EXP\core\risk_engine_v1332.py                54     work['priority_score']=[r['score'] for r in results]
+C:\EMCALI_Cyber_V13_3_2_EXP\core\risk_engine_v1332.py                57     work['risk_min']=[r['risk_min'] for r in results]
+C:\EMCALI_Cyber_V13_3_2_EXP\core\risk_engine_v1332.py                58     work['risk_max']=[r['risk_max'] for r in results]
+C:\EMCALI_Cyber_V13_3_2_EXP\core\sample_data.py                       9         {"finding_id": "F-0001", "source": "Qualys", "asset": "SRV-FIN-01", "ip":
+                                                                        "10.10.5.10", "os": "Windows Server 2019", "severity": "Critical", "cvss": 10.0,
+                                                                        "cve": "CVE-2020-0796", "title": "SMBv3 Remote Code Execution", "status": "Open",
+                                                                        "exploitability": "High", "business_service": "Finanzas", "patch_available": True,
+                                                                        "first_seen": now - timedelta(days=5), "last_seen": now - timedelta(hours=3),
+                                                                        "description": "Se detecta exposición del servicio SMB con vulnerabilidad crítica
+                                                                        conocida.", "recommendation": "Validar versión, deshabilitar SMBv1, segmentar red
+                                                                        y aplicar parche aprobado."},
+C:\EMCALI_Cyber_V13_3_2_EXP\core\sample_data.py                      10         {"finding_id": "F-0002", "source": "Tenable", "asset": "APP-CRM-02", "ip":
+                                                                        "10.10.20.12", "os": "Ubuntu 22.04", "severity": "High", "cvss": 8.8, "cve":
+                                                                        "CVE-2021-44228", "title": "Log4Shell detectado en componente Java", "status":
+                                                                        "Open", "exploitability": "High", "business_service": "Comercial",
+                                                                        "patch_available": True, "first_seen": now - timedelta(days=12), "last_seen": now
+                                                                        - timedelta(hours=7), "description": "Componente vulnerable de logging
+                                                                        identificado en aplicación de atención comercial.", "recommendation": "Actualizar
+                                                                        librería Log4j, validar dependencias transitivas y revisar IOC asociados."},
+C:\EMCALI_Cyber_V13_3_2_EXP\core\sample_data.py                      11         {"finding_id": "F-0003", "source": "Qualys", "asset": "WEB-PQRS-01", "ip":
+                                                                        "10.10.30.15", "os": "Red Hat Enterprise Linux 8", "severity": "Medium", "cvss":
+                                                                        6.4, "cve": "CVE-2023-12345", "title": "TLS débil y suite criptográfica obsoleta",
+                                                                        "status": "Mitigation Planned", "exploitability": "Medium", "business_service":
+                                                                        "PQRS", "patch_available": False, "first_seen": now - timedelta(days=20),
+                                                                        "last_seen": now - timedelta(days=1), "description": "El servicio acepta cifrados
+                                                                        heredados y protocolos no recomendados.", "recommendation": "Endurecer
+                                                                        configuración TLS, retirar suites heredadas y revalidar con escaneo."},
+C:\EMCALI_Cyber_V13_3_2_EXP\core\sample_data.py                      12         {"finding_id": "F-0004", "source": "Tenable", "asset": "DB-FACT-01", "ip":
+                                                                        "10.10.40.5", "os": "Oracle Linux 8", "severity": "High", "cvss": 7.5, "cve":
+                                                                        "CVE-2022-99999", "title": "Puerto administrativo expuesto", "status": "Open",
+                                                                        "exploitability": "Medium", "business_service": "Facturación", "patch_available":
+                                                                        False, "first_seen": now - timedelta(days=8), "last_seen": now -
+                                                                        timedelta(hours=20), "description": "Puerto administrativo accesible desde
+                                                                        segmento no autorizado.", "recommendation": "Aplicar hardening de red, listas de
+                                                                        control y segmentación administrativa."},
+C:\EMCALI_Cyber_V13_3_2_EXP\core\sample_data.py                      13         {"finding_id": "F-0005", "source": "Qualys", "asset": "SCADA-GTW-01",
+                                                                        "ip": "10.20.1.25", "os": "Windows Server 2016", "severity": "Critical", "cvss":
+                                                                        9.8, "cve": "CVE-2019-0708", "title": "BlueKeep en gateway OT", "status": "Open",
+                                                                        "exploitability": "High", "business_service": "Operación OT", "patch_available":
+                                                                        True, "first_seen": now - timedelta(days=2), "last_seen": now -
+                                                                        timedelta(hours=1), "description": "Gateway OT presenta condición crítica con
+                                                                        posible impacto operativo.", "recommendation": "Aislar activo, aplicar parche
+                                                                        validado, reforzar monitoreo y ventana controlada de cambio."},
+C:\EMCALI_Cyber_V13_3_2_EXP\core\sample_data.py                      14         {"finding_id": "F-0006", "source": "Tenable", "asset": "MAIL-EDGE-01",
+                                                                        "ip": "10.10.50.33", "os": "Windows Server 2022", "severity": "Low", "cvss": 3.7,
+                                                                        "cve": "CVE-2024-0101", "title": "Banner disclosure", "status": "Accepted Risk",
+                                                                        "exploitability": "Low", "business_service": "Correo", "patch_available": False,
+                                                                        "first_seen": now - timedelta(days=60), "last_seen": now - timedelta(days=5),
+                                                                        "description": "El servicio expone versión en cabeceras, sin hallazgo adicional
+                                                                        asociado.", "recommendation": "Ocultar banner en próxima ventana de
+                                                                        mantenimiento."},
+C:\EMCALI_Cyber_V13_3_2_EXP\core\sample_data.py                      21         {"doc_id": "KB-001", "title": "Playbook - Priorización de vulnerabilidades
+                                                                        críticas", "category": "Playbook", "tags": ["priorización", "cvss", "activo
+                                                                        crítico"], "content": "Priorizar hallazgos críticos con CVSS >= 9, explotación
+                                                                        pública y activos que soportan procesos de facturación, finanzas u operación OT.
+                                                                        Escalar a atención en 0-24 horas."},
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py          8 EPSS_URL = "https://api.first.org/data/v1/epss"
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py         34         ("cvssMetricV40", "4.0"),
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py         35         ("cvssMetricV31", "3.1"),
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py         36         ("cvssMetricV30", "3.0"),
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py         37         ("cvssMetricV2", "2.0"),
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py         48     cvss_data = selected.get("cvssData", {}) if selected else {}
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py         52         "cvss": cvss_data.get("baseScore"),
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py         53         "cvss_version": version,
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py         54         "cvss_vector": cvss_data.get("vectorString"),
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py         55         "cvss_severity": cvss_data.get("baseSeverity"),
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py         56         "cvss_source": selected.get("source") if selected else None,
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py         63 def consultar_epss(cve_ids):
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py         65         EPSS_URL,
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py         73             "epss": float(item["epss"]),
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py         74             "epss_percentile": float(item["percentile"]),
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py         75             "epss_date": item.get("date"),
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py         91     epss_data = {}
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py         92     epss_error = None
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py         95             epss_data = consultar_epss(cves)
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py         97             epss_error = str(exc)
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py        111     # Columnas numéricas: CVSS y EPSS
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py        113         "cvss",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py        114         "epss",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py        115         "epss_percentile",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py        120         "cvss_version",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py        121         "cvss_vector",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py        122         "cvss_severity",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py        123         "cvss_source",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py        124         "epss_date",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py        131         "epss_error",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py        156         epss = epss_data.get(cve, {})
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py        160         if epss_error:
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py        161             result.at[idx, "epss_error"] = epss_error
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py        164             "cvss", "cvss_version", "cvss_vector",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py        165             "cvss_severity", "cvss_source",
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py        172         for field, value in epss.items():
+
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Write-Host "`n=== INTEGRACION NVD / EPSS ==="
+
+=== INTEGRACION NVD / EPSS ===
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Get-ChildItem . -Recurse -Filter *.py |
+>>     Select-String -Pattern "services.nvd.nist.gov|api.first.org|vulnerability_enrichment" |
+>>     Select-Object Path,LineNumber,Line |
+>>     Format-Table -Wrap
+
+Path                                                                                                                                 LineNumber Line
+----                                                                                                                                 ---------- ----
+C:\EMCALI_Cyber_V13_3_2_EXP\ejecutar_bateria2_v13.py                                                                                        110
+                                                                                                                                                 d=get_json
+                                                                                                                                                ('https://s
+                                                                                                                                                ervices.nvd
+                                                                                                                                                .nist.gov/r
+                                                                                                                                                est/json/cv
+                                                                                                                                                es/2.0?'+ur
+                                                                                                                                                lencode({'c
+                                                                                                                                                veId':args.
+                                                                                                                                                cve}))
+C:\EMCALI_Cyber_V13_3_2_EXP\ejecutar_bateria2_v13.py                                                                                        116
+                                                                                                                                                 d=get_json
+                                                                                                                                                ('https://a
+                                                                                                                                                pi.first.or
+                                                                                                                                                g/data/v1/e
+                                                                                                                                                pss?'+urlen
+                                                                                                                                                code({'cve'
+                                                                                                                                                :args.cve})
+                                                                                                                                                )
+C:\EMCALI_Cyber_V13_3_2_EXP\core\enrichment.py                                                                                               10
+                                                                                                                                                resp = requ
+                                                                                                                                                ests.get('h
+                                                                                                                                                ttps://serv
+                                                                                                                                                ices.nvd.ni
+                                                                                                                                                st.gov/rest
+                                                                                                                                                /json/cves/
+                                                                                                                                                2.0', param
+                                                                                                                                                s={'cveId':
+                                                                                                                                                 cve_id}, t
+                                                                                                                                                imeout=time
+                                                                                                                                                out_sec)
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py                                                                                  7 NVD_URL = "
+                                                                                                                                                https://ser
+                                                                                                                                                vices.nvd.n
+                                                                                                                                                ist.gov/res
+                                                                                                                                                t/json/cves
+                                                                                                                                                /2.0"
+C:\EMCALI_Cyber_V13_3_2_EXP\core\vulnerability_enrichment.py                                                                                  8 EPSS_URL =
+                                                                                                                                                "https://ap
+                                                                                                                                                i.first.org
+                                                                                                                                                /data/v1/ep
+                                                                                                                                                ss"
+C:\EMCALI_Cyber_V13_3_2_EXP\EMCALI_Cyber_V12_Benchmark_V2_Completo\EMCALI_Cyber_V12_Benchmark_V2\scripts\refresh_official_metrics.py          9 NVD="https:
+                                                                                                                                                //services.
+                                                                                                                                                nvd.nist.go
+                                                                                                                                                v/rest/json
+                                                                                                                                                /cves/2.0?c
+                                                                                                                                                veId={}"
+C:\EMCALI_Cyber_V13_3_2_EXP\EMCALI_Cyber_V12_Benchmark_V2_Completo\EMCALI_Cyber_V12_Benchmark_V2\scripts\refresh_official_metrics.py         10 EPSS="https
+                                                                                                                                                ://api.firs
+                                                                                                                                                t.org/data/
+                                                                                                                                                v1/epss?cve
+                                                                                                                                                ={}"
+
+
+PS C:\EMCALI_Cyber_V13_3_2_EXP> cd C:\EMCALI_Cyber_V13_3_2_EXP
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Get-Content .\core\risk_engine_v1332.py
+"""V13.3.2 experimental: weighted risk, 0..100; unknown != zero."""
+import math
+import pandas as pd
+WEIGHTS = {'cvss': .25, 'epss': .20, 'kev': .20, 'asset_criticality': .15, 'exposure': .10, 'operational_impact': .10}
+LEVELS = {'low': 25., 'medium': 50., 'med': 50., 'high': 75., 'critical': 100., 'very high': 100.}
+EXPOSURE = {'internal': 25., 'interna':25., 'lan':25., 'dmz':75., 'internet':100., 'public':100., 'external':100., 'externa':100., 'isolated':0., 'aislado':0.}
+TRUE = {'true','yes','1','si','sí','kev'}
+FALSE = {'false','no','0'}
+def number(value, low, high):
+    try:
+        x=float(value)
+        return x if math.isfinite(x) and low <= x <= high else None
+    except (TypeError,ValueError): return None
+
+def factor_level(value, mapping):
+    if value is None or pd.isna(value): return None
+    s=str(value).strip().lower()
+    if s in mapping: return mapping[s]
+    # Explicit numeric factors on a 0..100 scale, not guessed categories.
+    return number(value,0,100)
+
+def evaluate(row):
+    cvss=number(row.get('cvss'),0,10)
+    epss=number(row.get('epss'),0,1)
+    kev_value=row.get('cisa_kev')
+    kev_text=str(kev_value).strip().lower() if kev_value is not None else ''
+    kev=100. if kev_text in TRUE else 0. if kev_text in FALSE else None
+    values={'cvss':cvss*10 if cvss is not None else None,
+            'epss':epss*100 if epss is not None else None,
+            'kev':kev,
+            'asset_criticality':factor_level(row.get('asset_criticality'),LEVELS),
+            'exposure':factor_level(row.get('exposure'),EXPOSURE),
+            'operational_impact':factor_level(row.get('operational_impact'),LEVELS)}
+    missing=[k for k,v in values.items() if v is None]
+    weighted=sum(WEIGHTS[k]*v for k,v in values.items() if v is not None)
+    known_weight=sum(WEIGHTS[k] for k,v in values.items() if v is not None)
+    # Interval bounds explicitly show uncertainty, rather than treating unknown as zero.
+    lower=round(weighted,2)
+    upper=round(weighted+100*(1-known_weight),2)
+    score=round(weighted,2) if not missing else None
+    band=('Pendiente de evaluación' if score is None else
+          'Crítico' if score>=80 else 'Alto' if score>=60 else 'Medio' if score>=40 else 'Bajo')
+    return {'score':score,'band':band,'coverage_pct':round(known_weight*100,1),
+            'risk_min':lower,'risk_max':upper,'missing_factors':', '.join(missing),
+            'components':values,'method':'V13.3.2 weighted prototype; no empirical calibration'}
+
+def evaluate_dataframe(df):
+    work=df.copy()
+    if work.empty:
+        for col in ('priority_score','risk_band_v1332','risk_coverage_pct','risk_min','risk_max','risk_missing_factors'):
+            work[col]=pd.Series(dtype='object')
+        return work
+    results=[evaluate(row) for _,row in work.iterrows()]
+    work['priority_score']=[r['score'] for r in results]
+    work['risk_band_v1332']=[r['band'] for r in results]
+    work['risk_coverage_pct']=[r['coverage_pct'] for r in results]
+    work['risk_min']=[r['risk_min'] for r in results]
+    work['risk_max']=[r['risk_max'] for r in results]
+    work['risk_missing_factors']=[r['missing_factors'] for r in results]
+    return work
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Get-Content .\core\enrichment_bridge.py
+from __future__ import annotations
+import re
+import pandas as pd
+
+CVE_RE = re.compile(r"^CVE-\d{4}-\d{4,}$", re.I)
+
+
+def _cve(value):
+    if pd.isna(value):
+        return ''
+    text = str(value).strip().upper()
+    return text if CVE_RE.fullmatch(text) else ''
+
+
+def _numeric(value, low, high):
+    try:
+        number = float(value)
+        return number if pd.notna(number) and low <= number <= high else None
+    except (TypeError, ValueError):
+        return None
+
+
+def summarize_provenance(data):
+    data = data.copy()
+    cvss = pd.to_numeric(data.get('cvss', pd.Series(dtype=float)), errors='coerce')
+    epss = pd.to_numeric(data.get('epss', pd.Series(dtype=float)), errors='coerce')
+    status = data.get('nvd_status', pd.Series(index=data.index, dtype='object')).astype('string').str.lower()
+    source = data.get('cvss_source', pd.Series(index=data.index, dtype='object'))
+    date = data.get('epss_date', pd.Series(index=data.index, dtype='object'))
+    return {'rows': len(data), 'nvd_analyzed': int(status.eq('analyzed').sum()),
+            'cvss_with_source': int((cvss.between(0,10) & source.notna()).sum()),
+            'epss_with_date': int((epss.between(0,1) & date.notna()).sum())}
+
+
+def integrate_enriched_file(base, enriched):
+    if 'cve' not in base.columns or 'cve' not in enriched.columns:
+        raise ValueError('Ambos conjuntos deben tener columna cve.')
+    if 'nvd_status' not in enriched.columns or 'epss_date' not in enriched.columns:
+        raise ValueError('Faltan metadatos de NVD/EPSS. Importe el archivo enriquecido, no el benchmark original.')
+    lookup = enriched.copy()
+    lookup['_cve_key'] = lookup['cve'].map(_cve)
+    lookup = lookup[lookup['_cve_key'] != '']
+    if lookup['_cve_key'].duplicated().any():
+        duplicate = lookup.loc[lookup['_cve_key'].duplicated(), '_cve_key'].iloc[0]
+        raise ValueError(f'CVE duplicado en archivo enriquecido: {duplicate}. Resolver antes de importar.')
+    lookup = lookup.set_index('_cve_key')
+    result = base.copy()
+    for field in ['cvss', 'epss', 'epss_percentile']:
+        if field not in result.columns:
+            result[field] = float('nan')
+        result[field] = pd.to_numeric(result[field], errors='coerce').astype(float)
+    metadata = ['cvss_version','cvss_vector','cvss_source','cvss_severity',
+                'epss_date','nvd_status','nvd_url','nvd_published','nvd_modified',
+                'enriched_at','nvd_error','epss_error']
+    for field in metadata:
+        if field not in result.columns:
+            result[field] = pd.Series(index=result.index, dtype='object')
+        else:
+            result[field] = result[field].astype('object')
+    matched = cvss_verified = epss_verified = 0
+    for idx, row in result.iterrows():
+        key = _cve(row['cve'])
+        if not key or key not in lookup.index:
+            continue
+        matched += 1
+        rec = lookup.loc[key]
+        nvd_status = str(rec.get('nvd_status', '')).lower()
+        cvss = _numeric(rec.get('cvss'), 0, 10)
+        epss = _numeric(rec.get('epss'), 0, 1)
+        cvss_source = rec.get('cvss_source')
+        epss_date = rec.get('epss_date')
+        nvd_ok = nvd_status not in ('', 'nan', 'none', 'query_error', 'not_found') and pd.notna(cvss_source)
+        epss_ok = pd.notna(epss_date) and str(epss_date).lower() not in ('', 'nan', 'none') and pd.isna(rec.get('epss_error'))
+        if cvss is not None and nvd_ok:
+            result.at[idx, 'cvss'] = cvss
+            cvss_verified += 1
+            if 'severity' in result.columns:
+                result.at[idx, 'severity'] = ('Critical' if cvss >= 9 else 'High' if cvss >= 7 else 'Medium' if cvss >= 4 else 'Low')
+        if epss is not None and epss_ok:
+            result.at[idx, 'epss'] = epss
+            epss_verified += 1
+            percentile = _numeric(rec.get('epss_percentile'), 0, 1)
+            if percentile is not None:
+                result.at[idx, 'epss_percentile'] = percentile
+        for field in metadata:
+            value = rec.get(field)
+            if pd.notna(value):
+                result.at[idx, field] = str(value)
+        if 'exploitability' in result.columns:
+            kev = str(row.get('cisa_kev', '')).lower() in ('true','1','yes','sí','si')
+            if kev or (epss is not None and epss_ok and epss >= .7) or (cvss is not None and nvd_ok and cvss >= 9):
+                result.at[idx, 'exploitability'] = 'High'
+            elif (epss is not None and epss_ok and epss >= .2) or (cvss is not None and nvd_ok and cvss >= 6):
+                result.at[idx, 'exploitability'] = 'Medium'
+            elif epss_ok or nvd_ok:
+                result.at[idx, 'exploitability'] = 'Low'
+        if 'data_quality_flags' in result.columns:
+            flags = str(row.get('data_quality_flags') or '')
+            parts = [f.strip() for f in flags.split(';') if f.strip() and f.strip().lower() not in ('nan','none')]
+            if cvss is not None and nvd_ok:
+                parts = [f for f in parts if f != 'CVSS no disponible']
+            if epss is not None and epss_ok:
+                parts = [f for f in parts if f != 'EPSS no disponible']
+            result.at[idx, 'data_quality_flags'] = '; '.join(parts)
+    summary = {'matched': matched, 'unmatched': len(base)-matched,
+               'cvss_verified': cvss_verified, 'epss_verified': epss_verified,
+               'source_file_rows': len(enriched), 'source_audit': summarize_provenance(enriched),
+               'note': 'Metadatos del archivo importado; no constituyen verificación independiente en línea.'}
+    return result, summary
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Get-Content .\core\vulnerability_enrichment.py
+
+import time
+import requests
+import pandas as pd
+from datetime import datetime, timezone
+
+NVD_URL = "https://services.nvd.nist.gov/rest/json/cves/2.0"
+EPSS_URL = "https://api.first.org/data/v1/epss"
+
+def consultar_nvd(cve_id, api_key=None):
+    headers = {"User-Agent": "EMCALI-Cyber-Research/13.3.1"}
+    if api_key:
+        headers["apiKey"] = api_key
+
+    response = requests.get(
+        NVD_URL,
+        params={"cveId": cve_id},
+        headers=headers,
+        timeout=30
+    )
+    response.raise_for_status()
+
+    vulnerabilities = response.json().get("vulnerabilities", [])
+    if not vulnerabilities:
+        return {"nvd_status": "not_found"}
+
+    record = vulnerabilities[0]["cve"]
+    metrics = record.get("metrics", {})
+
+    selected = None
+    version = None
+
+    for key, label in [
+        ("cvssMetricV40", "4.0"),
+        ("cvssMetricV31", "3.1"),
+        ("cvssMetricV30", "3.0"),
+        ("cvssMetricV2", "2.0"),
+    ]:
+        candidates = metrics.get(key, [])
+        if candidates:
+            selected = next(
+                (x for x in candidates if x.get("type") == "Primary"),
+                candidates[0]
+            )
+            version = label
+            break
+
+    cvss_data = selected.get("cvssData", {}) if selected else {}
+
+    return {
+        "nvd_status": record.get("vulnStatus", "unknown"),
+        "cvss": cvss_data.get("baseScore"),
+        "cvss_version": version,
+        "cvss_vector": cvss_data.get("vectorString"),
+        "cvss_severity": cvss_data.get("baseSeverity"),
+        "cvss_source": selected.get("source") if selected else None,
+        "nvd_published": record.get("published"),
+        "nvd_modified": record.get("lastModified"),
+        "nvd_url": f"https://nvd.nist.gov/vuln/detail/{cve_id}",
+    }
+
+
+def consultar_epss(cve_ids):
+    response = requests.get(
+        EPSS_URL,
+        params={"cve": ",".join(cve_ids)},
+        timeout=30
+    )
+    response.raise_for_status()
+
+    return {
+        item["cve"]: {
+            "epss": float(item["epss"]),
+            "epss_percentile": float(item["percentile"]),
+            "epss_date": item.get("date"),
+        }
+        for item in response.json().get("data", [])
+    }
+
+
+def enriquecer_hallazgos(df, api_key=None):
+    result = df.copy()
+    if "cve" not in result.columns:
+        raise ValueError("Falta la columna cve")
+    cves = sorted({
+        str(cve).strip().upper()
+        for cve in result["cve"].dropna()
+        if str(cve).strip().upper().startswith("CVE-")
+    })
+
+    epss_data = {}
+    epss_error = None
+    if cves:
+        try:
+            epss_data = consultar_epss(cves)
+        except requests.RequestException as exc:
+            epss_error = str(exc)
+    nvd_data = {}
+
+    for cve in cves:
+        try:
+            nvd_data[cve] = consultar_nvd(cve, api_key)
+        except requests.RequestException as exc:
+            nvd_data[cve] = {
+                "nvd_status": "query_error",
+                "nvd_error": str(exc)
+            }
+
+        time.sleep(0.6 if api_key else 6.0)
+
+    # Columnas numéricas: CVSS y EPSS
+    numeric_columns = [
+        "cvss",
+        "epss",
+        "epss_percentile",
+    ]
+
+    # Columnas de texto: versiones, vectores y procedencia
+    text_columns = [
+        "cvss_version",
+        "cvss_vector",
+        "cvss_severity",
+        "cvss_source",
+        "epss_date",
+        "nvd_status",
+        "nvd_published",
+        "nvd_modified",
+        "nvd_url",
+        "enriched_at",
+        "nvd_error",
+        "epss_error",
+    ]
+
+    for column in numeric_columns:
+        if column not in result.columns:
+            result[column] = pd.Series(
+                float("nan"), index=result.index
+            )
+        else:
+            result[column] = pd.to_numeric(
+                result[column], errors="coerce"
+            )
+
+    for column in text_columns:
+        if column not in result.columns:
+            result[column] = pd.Series(
+                pd.NA, index=result.index, dtype="object"
+            )
+        else:
+            result[column] = result[column].astype("object")
+
+
+    for idx, row in result.iterrows():
+        cve = str(row.get("cve", "")).strip().upper()
+        nvd = nvd_data.get(cve, {})
+        epss = epss_data.get(cve, {})
+
+        if nvd.get("nvd_error"):
+            result.at[idx, "nvd_error"] = nvd["nvd_error"]
+        if epss_error:
+            result.at[idx, "epss_error"] = epss_error
+
+        for field in [
+            "cvss", "cvss_version", "cvss_vector",
+            "cvss_severity", "cvss_source",
+            "nvd_status", "nvd_published",
+            "nvd_modified", "nvd_url"
+        ]:
+            if field in nvd and nvd[field] is not None:
+                result.at[idx, field] = nvd[field]
+
+        for field, value in epss.items():
+            result.at[idx, field] = value
+
+        result.at[idx, "enriched_at"] = (
+            datetime.now(timezone.utc).isoformat()
+        )
+
+    return result
+PS C:\EMCALI_Cyber_V13_3_2_EXP> $salida = "$env:USERPROFILE\Desktop\diagnostico_motor_v1332.txt"
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> @(
+>>     "=== MOTOR DE RIESGO ==="
+>>     Get-Content .\core\risk_engine_v1332.py
+>>     "=== PUENTE DE ENRIQUECIMIENTO ==="
+>>     Get-Content .\core\enrichment_bridge.py
+>>     "=== CONSULTAS NVD Y EPSS ==="
+>>     Get-Content .\core\vulnerability_enrichment.py
+>>     "=== REFERENCIAS A LOS MODULOS ==="
+>>     Get-ChildItem . -Recurse -Filter *.py |
+>>         Where-Object { $_.FullName -notmatch 'Benchmark|\.venv' } |
+>>         Select-String -Pattern 'enrichment_bridge|risk_engine_v1332|enriquecer_hallazgos' |
+>>         ForEach-Object { "$($_.Path):$($_.LineNumber): $($_.Line.Trim())" }
+>> ) | Out-File $salida -Encoding utf8
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Write-Host "Diagnóstico guardado en: $salida"
+Diagnóstico guardado en: C:\Users\pc\Desktop\diagnostico_motor_v1332.txt
+PS C:\EMCALI_Cyber_V13_3_2_EXP> cd C:\EMCALI_Cyber_V13_3_2_EXP
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> $archivos = @(
+>>     ".\pages\ingest.py",
+>>     ".\core\analysis.py",
+>>     ".\core\normalizer.py"
+>> )
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> $salida = "$env:USERPROFILE\Desktop\diagnostico_integracion_v1332.txt"
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> foreach ($archivo in $archivos) {
+>>     "===== $archivo =====" | Out-File $salida -Append -Encoding utf8
+>>     Get-Content $archivo | Out-File $salida -Append -Encoding utf8
+>> }
+PS C:\EMCALI_Cyber_V13_3_2_EXP>
+PS C:\EMCALI_Cyber_V13_3_2_EXP> Write-Host "Archivo generado: $salida"
+Archivo generado: C:\Users\pc\Desktop\diagnostico_integracion_v1332.txt
+PS C:\EMCALI_Cyber_V13_3_2_EXP>

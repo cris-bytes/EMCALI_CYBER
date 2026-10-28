@@ -1,0 +1,111 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\Windows\system32> CD C:\EMCALI_Cyber_V13_3_2_CORRECTIVO_PERSISTENCIA\EMCALI_Cyber_V13_3_2_EXP
+PS C:\EMCALI_Cyber_V13_3_2_CORRECTIVO_PERSISTENCIA\EMCALI_Cyber_V13_3_2_EXP> python -m unittest discover -s tests -p "test_correctivo_v1332.py" -v
+test_band_consistency (test_correctivo_v1332.TestCorrectivo.test_band_consistency) ... ok
+test_missing_is_not_zero (test_correctivo_v1332.TestCorrectivo.test_missing_is_not_zero) ... ok
+test_persistence_restart_and_integrity (test_correctivo_v1332.TestCorrectivo.test_persistence_restart_and_integrity) ... ok
+test_six_factors (test_correctivo_v1332.TestCorrectivo.test_six_factors) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.043s
+
+OK
+PS C:\EMCALI_Cyber_V13_3_2_CORRECTIVO_PERSISTENCIA\EMCALI_Cyber_V13_3_2_EXP> python -m streamlit run app.py
+2026-10-24 19:59:43.573 Uvicorn server started on :::8501
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://192.168.1.15:8501
+
+  Help agents write better Streamlit apps?
+  Install the official Streamlit skills by running streamlit skills in your terminal.
+
+2026-10-24 19:59:51.969 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-24 19:59:52.593 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-24 19:59:52.800 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-24 19:59:52.813 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-24 19:59:52.936 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-24 19:59:53.045 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-24 20:01:23.107 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-24 20:01:23.124 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+
+⚠ Symlinks not supported on this system.
+Project install uses symlinks so skills stay matched to your active Streamlit environment.
+Falling back to global installation. On Windows, enable Developer Mode to use project installs.
+
+
+✓ Installed:
+  → ~\.claude\skills\developing-with-streamlit
+
+● Up to date:
+  → ~\.agents\skills\developing-with-streamlit
+
+✨ Successfully installed globally
+
+Note: Global skills include a discover.py script that finds
+      project-specific bundled skills at runtime.
+2026-10-24 20:03:08.438 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-24 20:03:09.055 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-24 20:03:25.667 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-24 20:03:25.679 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-24 20:03:44.780 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-24 20:03:45.774 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.

@@ -1,0 +1,23 @@
+EMCALI Cyber 2.0 Híbrido Enterprise V13.1 EXPERIMENTAL
+========================================================
+Base: V12 Portable HP Victus RTX4050 suministrada por el usuario.
+V12 aprobada: NO modificada en origen. Este paquete es una copia experimental.
+
+NUEVO MÓDULO
+- Gestor Modelos Cyber en navegación principal.
+- Catálogo inicial:
+  * CyberSec-Assistant-3B Q5_K_M ~2.07 GB
+  * Foundation-Sec-8B-Instruct Q4_K_M ~4.92 GB
+- Descarga GGUF desde Hugging Face con reanudación HTTP Range.
+- Archivo temporal .part hasta completar descarga.
+- Instalación automática en Ollama mediante Modelfile.
+- Healthcheck local.
+- Selección del modelo activo.
+- Benchmark rápido: latencia, tokens y tokens/s.
+- Advertencia de VRAM: tamaño GGUF != VRAM total requerida.
+
+UBICACIÓN DE PESOS
+models/cybersecurity/
+
+NOTA
+Los pesos NO están incluidos en este ZIP y se descargan únicamente cuando el usuario pulsa Descargar GGUF.
