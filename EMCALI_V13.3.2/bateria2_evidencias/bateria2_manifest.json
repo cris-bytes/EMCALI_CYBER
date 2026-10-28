@@ -1,0 +1,27 @@
+{
+  "run_utc": "2026-10-24T23:31:30.472836+00:00",
+  "app_dir": "C:\\EMCALI_Cyber_V13_3_2_EXP",
+  "datasets_dir": "C:\\EMCALI_Cyber_V12_Benchmark_V2_Completo\\EMCALI_Cyber_V12_Benchmark_V2\\datasets",
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "risk_adapter": "core.analysis.risk_matrix",
+  "model": "phi3:mini",
+  "online": false,
+  "weights": {
+    "cvss": 0.25,
+    "epss": 0.2,
+    "cisa_kev": 0.2,
+    "asset_criticality": 0.15,
+    "exposure": 0.1,
+    "operational_impact": 0.1
+  },
+  "warning": "No confundir persistencia de archivo con persistencia de sesion Streamlit ni CPU con inferencia LLM.",
+  "risk_signature": "(df: 'pd.DataFrame') -> 'pd.DataFrame'",
+  "risk_file": "C:\\EMCALI_Cyber_V13_3_2_EXP\\core\\analysis.py",
+  "counts": {
+    "PASS": 29,
+    "FAIL": 0,
+    "PENDING": 18
+  },
+  "result_sha256": "046267b588b838bd31a24d11656296de93b04e196a9d410eb282d7a960f6797b"
+}
